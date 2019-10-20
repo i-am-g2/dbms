@@ -1,16 +1,39 @@
-<?php 
+<?php
 	require "header.php";
 ?>
-	<div>
-		<?php require "postgreCon.php";?>
+<link rel="stylesheet" type="text/css" href="Res/CSS/customLogin.css">
+<title>Login</title>
+
+
+<div class="login-page">
+	<div class="form">
+		<form class="login-form" action="login.inc.php" method="post">
+			<?php
+				if (isset($_GET['username'])) {
+					echo "<input type='text' placeholder='User Name' name='userId' value =".$_GET["username"]."/>";		
+				} else {
+					echo "<input type='text' placeholder='User Name' name='userId' />";
+				}
+			?>
+			
+			<input type="password" placeholder="Password" name="password"  />
+			<button name="loginSubmit">Submit</button>
+			<p class="message">Need Help? <a href="#">Contact Us</a></p>
+			<?php 
+				if (isset($_GET["error"])) {
+					echo "<div class ='errorMsg'>";
+					/* Use if else Condition */
+					echo "</div>";
+				}
+			?>
+		</form>
 	</div>
+</div>
 
-	<form action="login.inc.php"  method="post">
-	<input type="text" name="userid" >
-	<br>
-	<input type="password" name="pwd" >
-	<br>
-	<button name=>Submit</button>
-	</form>
-
+<div  class="bottumbar">
+	<span class="paraLeft">
+		Faculty Portal @ IIT Ropar
+	</span>
+	 
+</div>
 <?php require "footer.php" ?>
