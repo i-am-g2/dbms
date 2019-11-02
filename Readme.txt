@@ -38,18 +38,21 @@ text/string means more than one line, although saved similarly, but to help duri
 Schema:
 EmployeeID(Primarykey): string,
 Name: string,
-Biography: text/string,
+Position: string,
+Lab: string,
+Headline: string,
 emailID: string,
-linkedin-link: string/url,
+linkedin_link: string/url,
 Google-Scholar:link,
 Latest news: [{
 		news:text/string,
 		link: text/string
 	}]
-About Me: text,
-Research interests: [string],
+Note: text/string,
+About_Me: text,
+Research_Interests: [string],
 Collaboration(note regarding it): text/string,
-Teaching Interest: [text/string],
+Teaching_Interest: [text/string],
 Projects: [{
 		Title: string,
 		link: string,
@@ -57,7 +60,7 @@ Projects: [{
 		time-begin: date/time,
 		time-end(if currently doing then null):date/time,		
 	}]
-Research outputs:[{
+Research_Outputs:[{
 		Conference-Papers:[{
 			Paper-Title:string,
 			Conference-title:string,
@@ -82,11 +85,35 @@ Research outputs:[{
 			citations:integer,			
 		}]
 }]
-Prizes; [{
+Prizes: [{
 	Title:string,
 	time:date/time
-}]
+}],
+OtherLinks: [string/url]
+
 Please note the following:
 1.)Actually there is no schema in mongoDB but we need to define some schema to be used by the frontend, the frontend will query for a employee, then look for all the values as described by the above schema, it's not necessary all the value are there for an employee, the frontend will display the values it receives.
 2.) As mongoDB allows us to store arrays, we can store as many stuff an employee wants to store in a particular category, for e.g. projects, whereas if we were using sql, we would not have been able to do this so easily, we can do it then by creating another table for projects and adding foreign key employee ID, but this would take longer time as when we want to get projects for a particular employee, we would be required to query the whole projects table. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
