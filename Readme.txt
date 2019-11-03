@@ -2,7 +2,8 @@
 2) php 7.2
 
 
-
+TechStack:
+PHP,PosgreSql,MongoDB,HTML,CSS,BOOTSTRAP,AJAX
 
 
 Common Pitfalls - 
@@ -36,17 +37,17 @@ string means one liner text,
 text/string means more than one line, although saved similarly, but to help during gui
 
 Schema:
-EmployeeID(Primarykey): string,
+UserId(Primarykey): string,
 Name: string,
 Position: string,
 Lab: string,
 Headline: string,
-emailID: string,
-linkedin_link: string/url,
-Google-Scholar:link,
-Latest news: [{
-		news:text/string,
-		link: text/string
+EmailId: string,
+Linkedin_Link: string/url,
+Google_Scholar:link,
+Latest_News: [{
+		Headline:text/string,
+		Link: text/string
 	}]
 Note: text/string,
 About_Me: text,
@@ -55,41 +56,41 @@ Collaboration(note regarding it): text/string,
 Teaching_Interest: [text/string],
 Projects: [{
 		Title: string,
-		link: string,
-		description:text/string,
-		time-begin: date/time,
-		time-end(if currently doing then null):date/time,		
+		Link: string,
+		Description:text/string,
+		Time_Begin: date/time,
+		Time_End(if currently doing then null):date/time,		
 	}]
-Research_Outputs:[{
-		Conference-Papers:[{
-			Paper-Title:string,
-			Conference-title:string,
-			time:date/time,
-			link:string/url,
+Research_Outputs:{
+		Conference_Papers:[{
+			Paper_Title:string,
+			Conference_Title:string,
+			Time:date/time,
+			Link:string/url,
 			Description:text/string,
-			citations:integer,			
+			Citations:integer,			
 		}],
 		Articles:[{
-			Paper-Title:string,
-			Conference-title:string,
-			time:date/time,
-			link:string/url,
+			Paper_Title:string,
+			Conference_title:string,
+			Time:date/time,
+			Link:string/url,
 			Description:text/string,
-			citations:integer,			
+			Citations:integer,			
 		}],
 		Others:[{
 			Title:string,
-			time:date/time,
-			link:string/url,
+			Time:date/time,
+			Link:string/url,
 			Description:text/string,
-			citations:integer,			
+			Citations:integer,			
 		}]
-}]
+},
 Prizes: [{
 	Title:string,
 	time:date/time
 }],
-OtherLinks: [string/url]
+Other_Links: [string/url]
 
 Please note the following:
 1.)Actually there is no schema in mongoDB but we need to define some schema to be used by the frontend, the frontend will query for a employee, then look for all the values as described by the above schema, it's not necessary all the value are there for an employee, the frontend will display the values it receives.
