@@ -3,7 +3,7 @@
 
 
 TechStack:
-PHP,PosgreSql,MongoDB,HTML,CSS,BOOTSTRAP,AJAX
+PHP,PosgreSql,MongoDB,HTML,CSS,BOOTSTRAP
 
 
 Common Pitfalls - 
@@ -71,19 +71,17 @@ Research_Outputs:{
 			Citations:integer,			
 		}],
 		Articles:[{
-			Paper_Title:string,
-			Conference_title:string,
+			Title:string,
+			Conference_Title:string,
 			Time:date/time,
 			Link:string/url,
-			Description:text/string,
-			Citations:integer,			
+			Description:text/string,		
 		}],
 		Others:[{
 			Title:string,
 			Time:date/time,
 			Link:string/url,
-			Description:text/string,
-			Citations:integer,			
+			Description:text/string,	
 		}]
 },
 Prizes: [{

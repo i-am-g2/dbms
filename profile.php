@@ -25,8 +25,12 @@
 		<span class="display-4 text-center" style="margin-top:1%;color:white">YJ University<span>
 	</img> 
 	<div align="right" style="vertical-align: text-top;" valign="top">
-	<a href="edit_profile.php"><img src="Res/Image/edit.png" class="img-thumbnail" alt="Edit" style="max-width: 5%;height: auto;margin-bottom:1%;margin-top:0"></a>
-	</div>
+	<?php
+	$link="edit_profile.php?UserId=".$_GET['UserId'];
+	echo"
+	<a href='$link'><img src='Res/Image/edit.png' class='img-thumbnail' alt='Edit' style='max-width: 5%;height: auto;margin-bottom:1%;margin-top:0'></a>
+	</div>";
+	?>
 </div>
 
 <?php
@@ -45,9 +49,11 @@ $latest_news=$user['Latest_News'];
 $note=$user['Note'];
 $about_me=$user['About_Me'];
 $research_interests=$user['Research_Interests'];
+//var_dump($research_interests);
 $collaboration=$user['Collaboration'];
 $teaching_interest=$user['Teaching_Interest'];
 $projects=$user['Projects'];
+//var_dump($projects);
 $research_outputs=$user['Research_Outputs'];
 $prizes=$user['Prizes'];
 $other_links=$user['Other_Links'];
@@ -82,7 +88,8 @@ echo"
 		<br><hr>
 		<h2 class='diaplay-4'><small> Latest News </small></h2>
 		<div class='list-group'>";
-			if (is_array($latest_news))
+			if (is_array($latest_news) || is_object($latest_news))
+			//echo"debug1";
 			foreach($latest_news as $news){
 				$news_link=$news['Link'];
 				$news_headline=$news['Headline'];
@@ -96,7 +103,7 @@ echo"
 		<h2 class='diaplay-4'><small> Current Research Interests </small></h2>
 		<ul class='list-group list-group-flush'>
 		";	
-			if (is_array($research_interests))
+			if (is_array($research_interests) || is_object($research_interests))
 			foreach($research_interests as $interest){
 				echo"<li class='list-group-item' style='border:none'>$interest</li>";	
 			}
@@ -105,7 +112,7 @@ echo"
 		<h2 class='diaplay-4'><small> Teaching Interests </small></h2>
 		<ul class='list-group list-group-flush'>
 		";
-			if (is_array($teaching_interest))
+			if (is_array($teaching_interest) || is_object($teaching_interest))
 			foreach($teaching_interest as $interest){
 				echo"<li class='list-group-item' style='border:none'>$interest</li>";
 			}
@@ -114,8 +121,10 @@ echo"
 		<h2 class='diaplay-4'> Projects </h2>
 		<div id ='projects'>
 			<div>";
-				if (is_array($projects))
+				if (is_array($projects) || is_object($projects)){
+					//var_dump($projects);
 				foreach($projects as $project){
+					echo"array";
 					$project_title=$project['Title'];
 					$project_description=$project['Description'];
 					$project_link=$project['Link'];
@@ -127,6 +136,9 @@ echo"
 					<span class='text-muted' style='margin-top:0'><small>$time_begin | $time_end</small></span>
 					<br>
 					<span class='text-dark'>$project_description</span>";
+				}}
+				else{
+					echo"not array";
 				}
 		echo"
 			</div>
@@ -136,9 +148,11 @@ echo"
 		<div id ='projects'>
 			<div>";
 			$conference_papers=$research_outputs['Conference_Papers'];
-			$articles=$research_outputs['Papers'];
+			$articles=$research_outputs['Articles'];
 			$others=$research_outputs['Others'];
-			if (is_array($conference_papers))
+			//var_dump($research_outputs);
+			//var_dump($articles);
+			if (is_array($conference_papers) || is_object($conference_papers))
 			foreach($conference_papers as $project){
 				$project_title=$project['Title'];
 				$conference_title=$project['Conference_Title'];
@@ -154,17 +168,17 @@ echo"
 					<br>
 					<p class='text-secondary'>$conference_title</p>
 					<span class='text-dark'>$project_description</span><br>
-					<p> Citations:$citations</p>
+					<p> Citations1:$citations</p>
 				";
 			}
-			if (is_array($articles))
+			if (is_array($articles) || is_object($articles))
 			foreach($articles as $project){
+				var_dump($project);
 				$project_title=$project['Title'];
 				$conference_title=$project['Conference_Title'];
 				$project_description=$project['Description'];
 				$project_link=$project['Link'];
 				$time=$project['Time'];
-				$citations=$project['Citations'];
 				if($project_link==NULL)
 					$project_link="#";
 				echo"
@@ -173,36 +187,32 @@ echo"
 					<br>
 					<p class='text-secondary'>$conference_title</p>
 					<span class='text-dark'>$project_description</span><br>
-					<p> Citations:$citations</p>
 				";
 			}
-			if (is_array($others))
+			if (is_array($others) || is_object($others))
 			foreach($others as $project){
 				$project_title=$project['Title'];
 				$project_description=$project['Description'];
 				$project_link=$project['Link'];
 				$time=$project['Time'];
-				$citations=$project['Citations'];
 				if($project_link==NULL)
 					$project_link="#";
 				echo"
 					<a href='$project_link'><h4 class='text-primary' style='margin:0'>$project_title</h4></a>
 					<span class='text-muted' style='margin-top:0'><small>$time</small></span>
 					<br>
-					<p class='text-secondary'>$conference_title</p>
 					<span class='text-dark'>$project_description</span><br>
-					<p> Citations:$citations</p>
 				";
 			}
 			echo"
 			</div>
 		</div>
 		<hr>
-		<span>$collaboration</span><br>
+		<span>Collaboration Note: $collaboration</span><br>
 		<hr>
 		<h2 class='diaplay-4'><small> Other Links </small></h2>
 		<div class='list-group'>";
-		if (is_array($other_links))
+		if (is_array($other_links) || is_object($other_links))
 			foreach($other_links as $link){
 				echo"<a href='$link' class='list-group-item list-group-item-action'>$link</a>";
 			}
