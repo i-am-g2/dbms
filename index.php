@@ -4,7 +4,6 @@
 <link rel="stylesheet" type="text/css" href="Res/CSS/customLogin.css">
 <title>Login</title>
 
-
 <div class="login-page">
 	<div class="form">
 		<form class="login-form" action="login.inc.php" method="post">
