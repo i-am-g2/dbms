@@ -20,6 +20,9 @@ sudo php -S localhost:8007
 
 // Create Db and Create new user to access db
 CREATE DATABASE yourdbname;
+ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
+ALTER ROLE myprojectuser SET default_transaction_isolation TO 'read committed';
+ALTER ROLE myprojectuser SET timezone TO 'UTC';
 CREATE USER youruser WITH ENCRYPTED PASSWORD 'yourpass';
 GRANT ALL PRIVILEGES ON DATABASE yourdbname TO youruser;
 
@@ -100,6 +103,10 @@ Please note the following:
 
 
 
+-----------------------------------
+
+
+-----------------------------------
 
 
 

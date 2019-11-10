@@ -2,10 +2,10 @@
 	require "postgreCon.php";
 	if($db==false) {
 		header ("Location: error.php");
-		echo "Db Pressed";
+		exit();
 	}
 	if (isset($_POST['loginSubmit'])) {
-		echo "Submit Button Pressed";
+		
 		
 		if(empty($_POST['userId'] ) ) {
 			header("Location: index.php?error=emptyUname");
@@ -15,13 +15,28 @@
 			header("Location: index.php?error=emptypwd&username=".$_POST['userId']);
 			exit();
 		}
-		// Find Username in dbms, User Does not exist
-		// Find Username in dbms,  password do not match
+
+		$query = "select password from credentials where username = '".$_POST['userId']."';";
+		$result = pg_query($db, $query.";");
+		$count = pg_num_rows($result);
+		if($count ==0) {
+			header("Location: index.php?error=usernamenotexist&usernaem=".$_POST['userId']);
+			exit();
+		}
 		
-		session_start();
-		$_SESSION['login'] = true;
-		$_SESSION['userId'] = $_POST['userId'];
-		// redirect to Profile Page
-		header("Location: main.php");
+		$pass = pg_fetch_row($result)[0];
+
+		if (password_verify($_POST['password'] ,$pass )) {
+			session_start();
+			$_SESSION['login'] = true;
+			$_SESSION['userId'] = $_POST['userId'];
+			header("Location: "); 
+			/* Kahan redirect kare after login */
+		} else {
+			// header("Location: index.php?error=wrongpassword&username=".$_POST['userId']);
+			header("Location: index.php?error=wrongpassword&username=".$_POST['userId']);
+		}
+
+		
 	}
 ?>

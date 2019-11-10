@@ -1,0 +1,3 @@
+
+pg_fetch_row($result) - get rows of the reuslt as an array in a variable
+https://www.php.net/manual/en/book.pgsql.php
