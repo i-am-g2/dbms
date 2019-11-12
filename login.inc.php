@@ -30,10 +30,8 @@
 			session_start();
 			$_SESSION['login'] = true;
 			$_SESSION['userId'] = $_POST['userId'];
-			header("Location: "); 
-			/* Kahan redirect kare after login */
+			header("Location: dashboard.php"); 
 		} else {
-			// header("Location: index.php?error=wrongpassword&username=".$_POST['userId']);
 			header("Location: index.php?error=wrongpassword&username=".$_POST['userId']);
 		}
 
