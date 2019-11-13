@@ -1,11 +1,21 @@
 <?php
 session_start();
 if (!isset($_SESSION['login'])) {
-	header("Location: index.php?error=loginrequired");
+	header("Location: index.php?error=loginrequired&message=Login_Required");
 } else if ($_SESSION['login'] == false) {
-	header("Location: index.php?error=loginrequired");
+	header("Location: index.php?error=loginrequired&message=Login_Required");
 }
 ?>
+
+<?php 
+	require "postgreCon.php";
+	$sql = "select daysleft from remaining_leaves where username ='".$_SESSION['userId']."' and yearId = 0";
+	$res = pg_query($db, $sql.';');
+	$row = pg_fetch_row($res);
+	$daysleft = $row['0'];
+	$_SESSION['daysleft'] = $daysleft;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -105,6 +115,6 @@ if (!isset($_SESSION['login'])) {
 			<li class="nav-item">
 				<a class="nav-link" href="tables.html">
 					<i class="fas fa-calander-day"></i>
-					<span> _Days : Remaining </span></a>
+					<span> <?php echo $daysleft ?> : Days Remaining </span></a>
 			</li>
 		</ul>

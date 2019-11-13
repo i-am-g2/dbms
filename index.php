@@ -2,6 +2,17 @@
 	require "header.php";
 ?>
 
+<?php
+function process_string($var) {
+	$maxim = strlen($var);
+	for ($i = 0; $i<$maxim;$i++) {
+		if($var[$i] == '_'){
+			$var[$i] = ' ';
+		}
+	}
+	return $var;
+}
+?>
 
 <link rel="stylesheet" type="text/css" href="Res/CSS/customLogin.css">
 <title>Login</title>
@@ -25,7 +36,11 @@
 			<?php 
 				if (isset($_GET["error"])) {
 					echo "<div class ='errorMsg'>";
-					/* Use if else Condition */
+					echo "<i class='fas fa-exclamation-circle'></i> ".process_string(($_GET['message']));
+					echo "</div>";
+				} else if(isset($_GET["success"])) {
+					echo "<div class ='successMsg'>";
+					echo "<i class='fas fa-check-circle'></i> ".process_string(($_GET['message']));
 					echo "</div>";
 				}
 			?>

@@ -41,6 +41,7 @@
   transition: all 0.3 ease;
   cursor: pointer;
 }
+
 .form button:hover,.form button:active,.form button:focus {
   background: #43A047;
 }
@@ -121,8 +122,19 @@ body {
 
 .errorMsg{
 	margin-top: 25px;
-	background-color: red;
+	background-color: #FC4a1a;
 	color:#f2f2f2;
+	font-size: 18px;
+	font-family: 'Roboto';
+	font-weight: 600;
+	padding: 10px;
+}
+
+.successMsg{
+  margin-top: 25px;
+  background-color: #55bbe7;
+	color: #f2f2f2;
+	/* color:#f2f2f2; */
 	font-size: 18px;
 	font-family: 'Roboto';
 	font-weight: 600;

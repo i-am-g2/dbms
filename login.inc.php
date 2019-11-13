@@ -1,18 +1,14 @@
 <?php
 	require "postgreCon.php";
-	if($db==false) {
-		header ("Location: error.php");
-		exit();
-	}
 	if (isset($_POST['loginSubmit'])) {
 		
 		
 		if(empty($_POST['userId'] ) ) {
-			header("Location: index.php?error=emptyUname");
+			header("Location: index.php?error=emptyUname&message=Username_Empty");
 			exit();
 		}
 		else if (empty($_POST['password'])) {
-			header("Location: index.php?error=emptypwd&username=".$_POST['userId']);
+			header("Location: index.php?error=emptypwd&message=Enter_Password&username=".$_POST['userId']);
 			exit();
 		}
 
@@ -20,7 +16,7 @@
 		$result = pg_query($db, $query.";");
 		$count = pg_num_rows($result);
 		if($count ==0) {
-			header("Location: index.php?error=usernamenotexist&usernaem=".$_POST['userId']);
+			header("Location: index.php?error=usernamenotexist&message=User_does_not_exist&usernaem=".$_POST['userId']);
 			exit();
 		}
 		
@@ -32,7 +28,7 @@
 			$_SESSION['userId'] = $_POST['userId'];
 			header("Location: dashboard.php"); 
 		} else {
-			header("Location: index.php?error=wrongpassword&username=".$_POST['userId']);
+			header("Location: index.php?error=wrongpassword&message=Password_Error&username=".$_POST['userId']);
 		}
 
 		
