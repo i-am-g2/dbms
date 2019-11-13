@@ -1,6 +1,11 @@
 <?php
   require("dash_head_admin.php");
-  
+  session_start();
+if (!isset($_SESSION['power'])) {
+	header("Location: admin_login.php?error=loginrequired");
+} else if ($_SESSION['power'] == 1) {
+	header("Location: adminPanel.php?error=MainAdminOnly");
+}
   require "postgreCon.php";
   if($db==false) {
 		header ("Location: error.php");
@@ -59,7 +64,7 @@
     </div>
     </div>
     <script>
-		$(".sidebar li:eq(4)").addClass(" active ");
+		$(".sidebar li:eq(5)").addClass(" active ");
 	</script>
 	
 <?php

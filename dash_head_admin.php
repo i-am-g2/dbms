@@ -108,7 +108,7 @@ if (!isset($_SESSION['admin_login'])) {
 					<span>Add new Admin</span></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="delete_admin">
+				<a class="nav-link" href="delete_admin.php">
 					
 					<span> Delete an admin </span></a>
 			</li>

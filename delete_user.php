@@ -5,33 +5,6 @@
 		header ("Location: error.php");
 		exit();
 	}
-  if(array_key_exists('AddBtn', $_POST)  ) {
-    try{
-    $query = "INSERT INTO credentials(Username,Password) VALUES ('"
-              .$_POST['userId']."','"
-              .password_hash($_POST['password'],PASSWORD_DEFAULT)
-              ."');";
-    //echo $query;
-    
-    $result = pg_query($db, $query.";");
-    if(!$ret) {
-      // echo pg_last_error($db);
-      $query = "select password from credentials where username = '".$_POST['userId']."';";
-		  $result = pg_query($db, $query.";");
-      $count = pg_num_rows($result);
-      if($count==1){
-        echo "<script type='text/javascript'>alert('Username Exists!!');</script>";
-      }
-   } else {
-    echo "<script type='text/javascript'>alert('New User Added!!');</script>";
-
-   }
-    }
-    catch(\PDOException $e){
-        echo $e->getMessage();
-    }
-  }
-  
 ?>
 <script>
 function getUsers(dept){
@@ -44,7 +17,7 @@ function getUsers(dept){
 
             for(var i=0; i<len; i++){
                 var img = "&ensp; &ensp;<img src='Res/Image/cross.jpg' class='img-thumbnail' alt='X' style='max-width: 3%;height: auto' onclick='deleteUser(\""+dept+"\",\""+this.response[i]+"\")'></td>";
-                alert(img);
+                //alert(img);
                 var tr_str = "<tr>" +
                     "<td>" +this.response[i]+ img +
                     "</tr>";
@@ -59,7 +32,7 @@ function getUsers(dept){
 }
 
 function deleteUser(dept,user){
-    alert(dept+user);
+    //alert(dept+user);
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function(){
       //alert("request completed")

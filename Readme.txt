@@ -108,6 +108,8 @@ Username        VARCHAR(20) NOT NULL PRIMARY KEY
 ,Password         VARCHAR(1000) NOT NULL
 ,Power      INTEGER NOT NULL
 );
+Power=2; Main admin that can create other admins, restore backups and everything
+Power=1; can only add users, modify application paths
 
 CREATE TABLE credentials(
 username        VARCHAR(20) NOT NULL PRIMARY KEY

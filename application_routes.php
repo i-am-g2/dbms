@@ -1,28 +1,5 @@
 <?php
-    function getRouteFromUser($db,$from_username){
-        $query = "select * from Faculty_pos where username = '".$_from_username."';";
-		$result = pg_query($db, $query.";");
-		$count = pg_num_rows($result);
-        //TODO handle count=0;
-        $user = pg_fetch_row($result);
-        if($user['position']=="Director"){
-            $from_="Director";
-        }
-        else if($user['position']=="DFA" || $user['position']=="ADFA"){
-            $from_=$user['position'];
-        }
-        else if($user['position']=="HOD"){
-            $from_=$user['dept'].'_'.$user['position'];
-        }
-        else{
-            $from_=$user['dept']."_FAC";
-        }
-
-        $query = "select to_ from routes where from_ = '".$from_."';";
-        $result = pg_query($db, $query.";");
-        
-        $to_ = pg_fetch_row($result)[0];
-
+    function getUserName($db,$to_){
         if($to_=="Approved"){
             $to_username="Approved";
         }
@@ -30,20 +7,24 @@
             $query = "select username from Faculty_pos where position = '".$to_."';";
             $result = pg_query($db, $query.";");
             $to_username = pg_fetch_row($result)[0];
+            if(!$to_username){
+                header("Location: error.php");
+                //TODO error no director
+            }
         }
-        else if($user['position']=="CSE_HOD"){
+        else if($to_=="CSE_HOD"){
 
             $query = "select username from Faculty_pos where position = 'HOD' and dept='CSE';";
             $result = pg_query($db, $query.";");
             $to_username = pg_fetch_row($result)[0];
         }
-        else if($user['position']=="ME_HOD"){
+        else if($to_=="ME_HOD"){
 
             $query = "select username from Faculty_pos where position = 'HOD' and dept='ME';";
             $result = pg_query($db, $query.";");
             $to_username = pg_fetch_row($result)[0];
         }
-        else if($user['position']=="EE_HOD"){
+        else if($to_=="EE_HOD"){
 
             $query = "select username from Faculty_pos where position = 'HOD' and dept='EE';";
             $result = pg_query($db, $query.";");
@@ -52,7 +33,43 @@
         else{
             $to_username="Approved";
         }
-        return $to_username;
+
+        if(!$to_username){
+            $query = "select to_ from routes where from_ = '".$to_."';";
+            $result = pg_query($db, $query.";");
+            $to_ = pg_fetch_row($result)[0];
+            return getUserName($db,$to_);
+        }
+        else{
+            return $to_username;
+        }
+    }
+    function getRouteFromUsername($db,$from_username){
+        $query = "select * from Faculty_pos where username = '".$from_username."';";
+		$result = pg_query($db, $query.";");
+		$count = pg_num_rows($result);
+        //TODO handle count=0;
+        $user = pg_fetch_row($result);
+        if($user[2]=="Director"){
+            $from_="Director";
+        }
+        else if($user[2]=="DFA" || $user[2]=="ADFA"){
+            $from_=$user[2];
+        }
+        else if($user[2]=="HOD"){
+            $from_=$user[1].'_'.$user[2];
+        }
+        else{
+            $from_=$user[1]."_FAC";
+        }
+        //echo"from".$from_."\n";
+        $query = "select to_ from routes where from_ = '".$from_."';";
+        $result = pg_query($db, $query.";");
+        
+        $to_ = pg_fetch_row($result)[0];
+        //echo"to".$to_."\n";
+        
+        return getUserName($db,$to_);
     }
 
     function setDefaultRoutes($db){

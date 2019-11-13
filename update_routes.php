@@ -5,10 +5,23 @@
   if($db==false) {
 		header ("Location: error.php");
 		exit();
-	}
+    }
+    echo getRouteFromUsername($db,"yogesh");
   if(array_key_exists('CSE_FAC_Btn', $_POST)  ) {
     //  echo "update cse fac";
     setRoute($db,'CSE_FAC',$_POST['CSE_FAC_VAL']);
+  }
+  if(array_key_exists('EE_FAC_Btn', $_POST)  ) {
+    //  echo "update cse fac";
+    setRoute($db,'EE_FAC',$_POST['EE_FAC_VAL']);
+  }
+  if(array_key_exists('ME_FAC_Btn', $_POST)  ) {
+    //  echo "update cse fac";
+    setRoute($db,'ME_FAC',$_POST['ME_FAC_VAL']);
+  }
+  if(array_key_exists('CSE_HOD_Btn', $_POST)  ) {
+    //  echo "update cse fac";
+    setRoute($db,'CSE_HOD',$_POST['CSE_FAC_VAL']);
   }
   if(array_key_exists('Defaults_Btn', $_POST)  ) {
     //  echo"set defaults";
@@ -198,7 +211,7 @@
     </div>
   </div>
     <script>
-		$(".sidebar li:eq(5)").addClass(" active ");
+		$(".sidebar li:eq(4)").addClass(" active ");
 	</script>
 	
 <?php
