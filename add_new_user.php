@@ -1,5 +1,6 @@
 <?php
   require("dash_head_admin.php");
+  
   require "postgreCon.php";
   if($db==false) {
 		header ("Location: error.php");
@@ -55,13 +56,13 @@
 			      <br>Password:<br>
             <input type="password" placeholder="Password" name="password"  />
             <br>  <div class="form-group">
-              <label for="sel1">Select list:</label>
+              <label for="sel1">Select Department:</label>
               <select class="form-control" id="sel1" name="dept">
                 <option value="CSE">CSE</option>
                 <option value="ME">ME</option>
                 <option value="EE">EE</option>
               </select>
-            </div> 
+            
 			      <br><button name="AddBtn" class="btn btn-primary">Add</button>
 			      <?php 
 				      if (isset($_GET["error"])) {

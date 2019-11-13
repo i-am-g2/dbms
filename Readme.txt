@@ -119,12 +119,16 @@ username        VARCHAR(20) NOT NULL PRIMARY KEY,
 dept         VARCHAR(10) NOT NULL,
 Position		VARCHAR(20) NOT NULL
 );
+values for dept: CSE, ME, EE (case sensitive)
+values for position: Director,Faculty,HOD,DFA,ADFA    (case sensitive)
 
 
-CREATE TABLE Routes(
+CREATE TABLE routes(
 from_ 	VARCHAR(25) NOT NULL PRIMARY KEY,
-to_ 		VARCHAR NOT NULL
+to_ 		VARCHAR(25) NOT NULL
 );
+values allowed: Approved, CSE_FAC,CSE_HOD, EE_FAC, EE_HOD, ME_HOD, ME_FAC, Director, DFA, ADFA;
+
 
 
 -----------------------------------

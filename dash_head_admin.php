@@ -98,7 +98,7 @@ if (!isset($_SESSION['admin_login'])) {
 					<span>Change HODs</span></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="add_new_admin.php">
+				<a class="nav-link" href="update_routes.php">
 					
 					<span>Modify Leve Routes</span></a>
 			</li>

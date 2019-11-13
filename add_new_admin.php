@@ -1,5 +1,6 @@
 <?php
   require("dash_head_admin.php");
+  
   require "postgreCon.php";
   if($db==false) {
 		header ("Location: error.php");
@@ -7,10 +8,10 @@
 	}
   if(array_key_exists('AddBtn', $_POST)  ) {
     try{
-    $query = "INSERT INTO credentials(Username,Password) VALUES ('"
+    $query = "INSERT INTO Admins(Username,Password,Power) VALUES ('"
               .$_POST['userId']."','"
               .password_hash($_POST['password'],PASSWORD_DEFAULT)
-              ."');";
+              ."',1);";
     //echo $query;
     
     $result = pg_query($db, $query.";");
@@ -23,7 +24,7 @@
         echo "<script type='text/javascript'>alert('Username Exists!!');</script>";
       }
    } else {
-    echo "<script type='text/javascript'>alert('New User Added!!');</script>";
+    echo "<script type='text/javascript'>alert('New Admin Added!!');</script>";
 
    }
     }
@@ -58,7 +59,7 @@
     </div>
     </div>
     <script>
-		$(".sidebar li:eq(0)").addClass(" active ");
+		$(".sidebar li:eq(4)").addClass(" active ");
 	</script>
 	
 <?php

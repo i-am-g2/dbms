@@ -1,5 +1,11 @@
 <?php
     require "postgreCon.php";
+    session_start();
+if (!isset($_SESSION['admin_login'])) {
+	header("Location: index.php?error=loginrequired");
+} else if ($_SESSION['admin_login'] == false) {
+	header("Location: index.php?error=loginrequired");
+}
     try{
     $username = $_GET['username'];
     $return_arr = array();
