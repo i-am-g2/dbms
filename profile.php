@@ -173,7 +173,7 @@ echo"
 			}
 			if (is_array($articles) || is_object($articles))
 			foreach($articles as $project){
-				var_dump($project);
+				//var_dump($project);
 				$project_title=$project['Title'];
 				$conference_title=$project['Conference_Title'];
 				$project_description=$project['Description'];
@@ -197,7 +197,7 @@ echo"
 				$time=$project['Time'];
 				if($project_link==NULL)
 					$project_link="#";
-				echo"
+				echo" y  
 					<a href='$project_link'><h4 class='text-primary' style='margin:0'>$project_title</h4></a>
 					<span class='text-muted' style='margin-top:0'><small>$time</small></span>
 					<br>

@@ -3,7 +3,7 @@
 
 
 TechStack:
-PHP,PosgreSql,MongoDB,HTML,CSS,BOOTSTRAP
+PHP,PosgreSql,MongoDB,HTML,CSS,BOOTSTRAP,AJAX
 
 
 Common Pitfalls - 
@@ -98,8 +98,38 @@ Please note the following:
 2.) As mongoDB allows us to store arrays, we can store as many stuff an employee wants to store in a particular category, for e.g. projects, whereas if we were using sql, we would not have been able to do this so easily, we can do it then by creating another table for projects and adding foreign key employee ID, but this would take longer time as when we want to get projects for a particular employee, we would be required to query the whole projects table. 
 
 
+==========================================================
+There is an Admin table, there can be a few admins with one main admin, and other admins, main admin has all the access to everything, he creates/deletes other admins including log tables. Other admins can only add/remove new faculties. This is also logged in an Admin operation DB.
+Admin Table Schema:
+Username(Primary Key),Password,{Power(int)=2;for main,1 for other}
+
+CREATE TABLE Admins(
+Username        VARCHAR(20) NOT NULL PRIMARY KEY
+,Password         VARCHAR(1000) NOT NULL
+,Power      INTEGER NOT NULL
+);
+Power=2; Main admin that can create other admins, restore backups and everything
+Power=1; can only add users, modify application paths
+
+CREATE TABLE credentials(
+username        VARCHAR(20) NOT NULL PRIMARY KEY
+,Password         VARCHAR(1000) NOT NULL
+);
+
+CREATE TABLE Faculty_Pos(
+username        VARCHAR(20) NOT NULL PRIMARY KEY,
+dept         VARCHAR(10) NOT NULL,
+Position		VARCHAR(20) NOT NULL
+);
+values for dept: CSE, ME, EE (case sensitive)
+values for position: Director,Faculty,HOD,DFA,ADFA    (case sensitive)
 
 
+CREATE TABLE routes(
+from_ 	VARCHAR(25) NOT NULL PRIMARY KEY,
+to_ 		VARCHAR(25) NOT NULL
+);
+values allowed: Approved, CSE_FAC,CSE_HOD, EE_FAC, EE_HOD, ME_HOD, ME_FAC, Director, DFA, ADFA;
 
 
 

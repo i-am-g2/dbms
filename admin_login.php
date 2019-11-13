@@ -1,18 +1,50 @@
 <?php
 	require "header.php";
 ?>
-
 <?php
-function process_string($var) {
-	$maxim = strlen($var);
-	for ($i = 0; $i<$maxim;$i++) {
-		if($var[$i] == '_'){
-			$var[$i] = ' ';
-		}
+    require "postgreCon.php";
+	if($db==false) {
+		header ("Location: error.php");
+		exit();
 	}
-	return $var;
-}
+	if(array_key_exists('loginSubmit', $_POST)  ) {
+		
+		
+		if(empty($_POST['userId'] ) ) {
+			header("Location: admin_login.php?error=emptyUname");
+			exit();
+		}
+		else if (empty($_POST['password'])) {
+			header("Location: admin_login.php?error=emptypwd&username=".$_POST['userId']);
+			exit();
+		}
+
+		$query = "select Password,Power from Admins where username = '".$_POST['userId']."';";
+		$result = pg_query($db, $query.";");
+		$count = pg_num_rows($result);
+		if($count ==0) {
+			header("Location: admin_login.php?error=usernamenotexist&usernaem=".$_POST['userId']);
+			exit();
+		}
+		
+        $row = pg_fetch_row($result);
+        $pass=$row[0];
+        $power =$row[1]; 
+		if (password_verify($_POST['password'] ,$pass )) {
+			session_start();
+			$_SESSION['admin_login'] = true;
+            $_SESSION['userId'] = $_POST['userId'];
+            $_SESSION['power'] =$power;
+			header("Location: adminPanel.php"); 
+		} else {
+			header("Location: admin_login.php?error=wrongpassword&username=".$_POST['userId']);
+		}
+
+		
+	}
+
 ?>
+
 
 <link rel="stylesheet" type="text/css" href="Res/CSS/customLogin.css">
 <title>Login</title>
@@ -21,11 +53,11 @@ function process_string($var) {
 	
 	<div class="form">
 		<ul class="nav nav-pills nav-justified">
-    		<li class="nav-item"><a class="nav-link active" href="index.php">Faculty</a></li>
-    		<li class="nav-item"><a class="nav-link" href="admin_login.php">Admin</a></li>
+    		<li class="nav-item"><a class="nav-link " href="index.php">Faculty</a></li>
+    		<li class="nav-item"><a class="nav-link active" href="admin_login.php">Admin</a></li>
     
   		</ul><br>
-		<form class="login-form" action="login.inc.php" method="post">
+		<form class="login-form" method="post">
 			
 			<?php
 				if (isset($_GET['username'])) {
@@ -41,11 +73,7 @@ function process_string($var) {
 			<?php 
 				if (isset($_GET["error"])) {
 					echo "<div class ='errorMsg'>";
-					echo "<i class='fas fa-exclamation-circle'></i> ".process_string(($_GET['message']));
-					echo "</div>";
-				} else if(isset($_GET["success"])) {
-					echo "<div class ='successMsg'>";
-					echo "<i class='fas fa-check-circle'></i> ".process_string(($_GET['message']));
+					/* Use if else Condition */
 					echo "</div>";
 				}
 			?>

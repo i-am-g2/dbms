@@ -1,55 +1,84 @@
-<!--
-    Temporary File to add a new user
-    Untill you make the real one @Jeetu
-    Or maybe just add a way to check admin here-->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>Personal Profile</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</head>
-
-<body style = "
-  background: url('Res/Image/profile-bg3.png') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-">
-
-
-	<div style="margin-left:1%">
-		<span style="color:white">School of Engineering</span><br>
-		<img src="Res/Image/logo.png" class="img-thumbnail" alt="U Logo" style="max-width: 10%;height: auto;margin-bottom:1%;margin-top:0">
-			<span class="display-4 text-center" style="margin-top:1%;color:white">YJ University<span>
-		</img> 
-	</div>
-
 <?php
-	session_start();
-	require_once __DIR__ . "/vendor/autoload.php";
-	$collection = (new MongoDB\Client)->YJUniversityDB->profiles;
-	$UserIdPara = $_GET['UserId'];
-	$user = $collection->findOne(['UserId'=>$UserIdPara]);
-    if($user==NULL){
-        $insertOneResult = $collection->insertOne([
-            'UserId' => $UserIdPara,
-        ]);
-        echo"<h1 class='display-1'>User Created</h1>";
+  require("dash_head_admin.php");
+  
+  require "postgreCon.php";
+  if($db==false) {
+		header ("Location: error.php");
+		exit();
+	}
+  if(array_key_exists('AddBtn', $_POST)  ) {
+    try{
+      $query = "INSERT INTO credentials(Username,Password) VALUES ('"
+              .$_POST['userId']."','"
+              .password_hash($_POST['password'],PASSWORD_DEFAULT)
+              ."');";
+      $result = pg_query($db, $query.";");
+      if(!$result) {
+        $query = "select password from credentials where username = '".$_POST['userId']."';";
+		    $result = pg_query($db, $query.";");
+        $count = pg_num_rows($result);
+        if($count==1){
+          echo "<script type='text/javascript'>alert('Username Exists!!');</script>";
+        }
+        else{
+          echo "<script type='text/javascript'>alert('Some Error Occured!!');</script>";
+        }
+      } 
+      else {
+        $query = "INSERT INTO Faculty_Pos(username,dept,position) VALUES ('"
+          .$_POST['userId']."','"
+          .$_POST['dept']."','Faculty');";
+
+
+        $result = pg_query($db, $query.";");
+        if($result) {
+          echo "<script type='text/javascript'>alert('New User Added!!');</script>";
+        }else{
+          echo "<script type='text/javascript'>alert('Error code 2!!');</script>";
+        }
+    
+
+      }
     }
-    else{
-        echo"<h1 class='display-1'>User Exists</h1>";
+    catch(\PDOException $e){
+        echo $e->getMessage();
     }
+  }
+  
 ?>
-
+  <div id="content-wrapper">
+    <div class="container-fluid">
+      <div class="login-page">    
+        <div class="form">
+		      <form class="login-form" method="post">
+		        UserName:<br>
+            <input type='text' placeholder='User Name' name='userId' />
+			      <br>Password:<br>
+            <input type="password" placeholder="Password" name="password"  />
+            <br>  <div class="form-group">
+              <label for="sel1">Select Department:</label>
+              <select class="form-control" id="sel1" name="dept">
+                <option value="CSE">CSE</option>
+                <option value="ME">ME</option>
+                <option value="EE">EE</option>
+              </select>
+            
+			      <br><button name="AddBtn" class="btn btn-primary">Add</button>
+			      <?php 
+				      if (isset($_GET["error"])) {
+					      echo "<div class ='errorMsg'>";
+					      echo "</div>";
+				      }
+			      ?>
+		      </form>
+	      </div>    
+      </div>
+    </div>
+  </div>
+    <script>
+		$(".sidebar li:eq(1)").addClass(" active ");
+	</script>
 	
-</body>
-</html>
-
-
+<?php
+  require("dash_foot.php");
+?>
