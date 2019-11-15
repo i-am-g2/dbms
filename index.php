@@ -1,5 +1,6 @@
 <?php
 	require "header.php";
+	
 ?>
 
 <?php
@@ -39,6 +40,7 @@ function process_string($var) {
 			<button name="loginSubmit">Login</button>
 			<p class="message">Need Help? <a href="#">Contact Us</a></p>
 			<?php 
+				
 				if (isset($_GET["error"])) {
 					echo "<div class ='errorMsg'>";
 					echo "<i class='fas fa-exclamation-circle'></i> ".process_string(($_GET['message']));

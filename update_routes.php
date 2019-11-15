@@ -6,7 +6,7 @@
 		header ("Location: error.php");
 		exit();
     }
-    echo getRouteFromUsername($db,"yogesh");
+  //  echo getRouteFromUsername($db,"yogesh");
   if(array_key_exists('CSE_FAC_Btn', $_POST)  ) {
     //  echo "update cse fac";
     setRoute($db,'CSE_FAC',$_POST['CSE_FAC_VAL']);
@@ -26,6 +26,10 @@
   if(array_key_exists('Defaults_Btn', $_POST)  ) {
     //  echo"set defaults";
     setDefaultRoutes($db);
+  }
+  if(array_key_exists('Approved_Btn', $_POST)  ) {
+    //  echo"set defaults";
+    setAllRoutesApproved($db);
   }
   
   
@@ -63,7 +67,7 @@
                 <div class = "row">
                     <div class = "col-sm-4"><label for="EE_FAC">Select Destination for EE Faculty:</label></div>
                     <div class = "col-sm-4"><select class="form-control" id="EE_FAC" name="EE_FAC_VAL">
-                        <option value="ME_HOD">HOD EE</option>
+                        <option value="EE_HOD">HOD EE</option>
                         <option value="DFA">DFA</option>
                         <option value="ADFA">ADFA</option>
                         <option value="Director">Director</option>
@@ -125,8 +129,10 @@
                     <div class = "col-sm-4"><button name="ADFA_Btn" class="btn btn-primary">Update</button></div>
                 </div>
                 <hr>
-                <div><button name="Defaults_Btn" class="btn btn-primary">Set Defaults</button></div>
-            <hr>          
+                <div><button name="Defaults_Btn" class="btn btn-primary">Set Defaults</button>
+                
+                <button name="Approved_Btn" class="btn btn-primary">Set All Approved</button></div>
+                <hr>          
 
 
 		      </form>
