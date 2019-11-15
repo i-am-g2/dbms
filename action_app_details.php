@@ -7,6 +7,8 @@
 require("dash_head.php");
 ?>
 
+<link rel="stylesheet" href="Res/CSS/customappdetails.css">
+
 <div id="content-wrapper">
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item">
@@ -30,32 +32,32 @@ require("dash_head.php");
 		<div>
 			<p> Id : <?php echo $application_obj['0']; ?> </p>
 			<p> By : <?php echo $application_obj['1']; ?> </p>
-			<p> From : <?php echo $application_obj['2']; ?> </p>
-			<p> To : <?php echo $application_obj['3']; ?></p>
+			<p> From : <?php echo date_format(date_create($application_obj['2']) , "D, d M y"); ?> </p>
+			<p> To : <?php echo date_format(date_create($application_obj['3']) , "D, d M y"); ?></p>
 			<p> Days Borrowed : <?php echo $application_obj['7']; ?></p>
 			<p> Description</p>
-			<p style="border-left: medium solid blue; padding-left : 10px; "> <?php echo $application_obj['4']; ?></p>
-			
+			<p style="border-left: medium solid blue; padding-left : 10px; background-color: #f2f2f2;">  <?php echo $application_obj['4']; ?></p>
+			<hr>
 			<ul class="list-group">
 				<?php 
 					while ($row_cmnt = pg_fetch_row($cmnt_res)) {
-						echo "<li id='cmnt_item' class = 'list-group-item'><p id='user'>".$row_cmnt['1']."</p><p id='timeval'>".$row_cmnt['2']."</p><p id='desc'>".$row_cmnt['3']."</p></li>";
+						echo "<li class = 'list-group-item'><p class='user'> <i class='fas fa-user'> </i> &nbsp : &nbsp ".$row_cmnt['1']."</p><p class='timeval'> <i class='fas fa-clock'> </i> &nbsp : &nbsp".date_format(date_create($row_cmnt['2']) , "G:i : : d M y") ."</p><p class='desc'> <i class='fas fa-comment-alt'> </i> &nbsp : &nbsp".$row_cmnt['3']."</p></li>";
 					}
 				?>
 				<!-- Comments -->
 			</ul>
 
 			<!--Comment Box-->
-			<form action="post_comment.inc.php" method="post"> 
+			<form action="post_comment.inc.php" method="post" > 
 			<textarea name="comment" style="width:80%;height:150px;"></textarea><br>
-			<button name="comment_submit">Submit</button>	
+			<button name="comment_submit" class="btn btn-success">Submit</button>	
 			</form>
 
-
-			<form action="post_comment.inc.php" method="post">
-			<button type="button" class="btn btn-success"> Approve </button> 
-			<button type="button" class="btn btn-danger">Reject</button>
-			<button type="button" class="btn btn-primary">Revert</button>
+					<hr>
+			<form action="red_app.inc.php" method="post" id='buttonArea'>
+			<button  class="btn btn-dark" name="approve_submit"> Approve </button> 
+			<button  class="btn btn-dark" name="reject_submit">Resject</button>
+			<button  class="btn btn-dark" name="rev_submit">Revert</button>
 			</form>
 
 		</div>

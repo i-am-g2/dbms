@@ -1,5 +1,8 @@
 <?php
 require("dash_head.php");
+require("postgreCon.php");
+$sql = "select * from applications where username='" . $_SESSION['userId'] . "';";
+$result = pg_query($db, $sql);
 ?>
 
 <link rel="stylesheet" href="Res/CSS/customForm.css">
@@ -23,7 +26,6 @@ require("dash_head.php");
 
 						<div class="form">
 
-
 							<form class="leave-form" action="leave.inc.php" method="post">
 								<label> Start Date : </label> <input type="date" name="start_date"> <br>
 								<label> End Date &nbsp&nbsp: </label> <input type="date" name="end_date"> <br>
@@ -38,7 +40,7 @@ require("dash_head.php");
 				</div>
 
 			</div>
-			<div class="col-md-6" style="visibility: hidden; border-right: medium dashed green;">
+			<div class="col-md-6" style=" border-left: medium dashed green;">
 				<div class="card" style="">
 
 					<div class="card-body">
@@ -48,26 +50,19 @@ require("dash_head.php");
 						<!-- Past Submitted  -->
 						<div style="background-color: #f2f2f2;">
 							<ul class="list-group">
-								<li class="list-group-item">
-									<p>Application</p>
-									<p>User </p>
-									<p>From to End</p>
-								</li>
-								<li class="list-group-item">
-									<p>Application</p>
-									<p>User </p>
-									<p>From to End</p>
-								</li>
-								<li class="list-group-item">
-									<p>Application</p>
-									<p>User </p>
-									<p>From to End</p>
-								</li>
-								<li class="list-group-item">
-									<p>Application</p>
-									<p>User </p>
-									<p>From to End</p>
-								</li>
+								<?php
+								while ($row = pg_fetch_row($result)) {
+
+									echo "
+									<li class='list-group-item'>
+									
+									<p>Id :" . $row['0'] . " </p>
+									<p>User : " . $row['1'] . " </p>
+									<p>" . $row['2'] . " to " . $row['3'] . "</p>
+									
+									</li>";
+								}
+								?>
 							</ul>
 						</div>
 

@@ -1,0 +1,15 @@
+.list-group : nth-child(odd) {
+	background-color: aquamarine;
+}
+
+.form  {
+	background-color: #f2f2f2;
+	padding: 10px;
+	border-left: medium solid green;
+	/* width: 50%; */
+}
+
+.form > p  {
+	font-size: 18px;
+	
+}

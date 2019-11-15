@@ -93,7 +93,7 @@ if (!isset($_SESSION['login'])) {
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="tables.html">
+				<a class="nav-link" href="#" >
 					<i class="fas fa-id-badge"></i>
 					<span> Browse Profile </span></a>
 			</li>
@@ -103,7 +103,7 @@ if (!isset($_SESSION['login'])) {
 					<span>Take Leave</span></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="charts.html">
+				<a class="nav-link" href="profile.php?UserId=<?php echo $_SESSION['userId']?>">
 					<i class="fas fa-fw fa-chart-area"></i>
 					<span>My Profile</span></a>
 			</li>
