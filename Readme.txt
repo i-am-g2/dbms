@@ -123,8 +123,10 @@ dept         VARCHAR(10) NOT NULL,
 Position		VARCHAR(50) NOT NULL
 );
 values for dept: CSE, ME, EE (case sensitive)
-values for position: Director,Faculty,HOD,DFA,ADFA    (case sensitive)
-
+//old values for position: Director,Faculty,HOD,DFA,ADFA    (case sensitive)
+This makes update route function and its trigger as well as getrouteusername function very inefficient
+//new values for position: Director,Faculty,CSE_HOD,ME_HOD,EE_HOD,DFA,ADFA
+//now i have to check while updating hod but this updateHOD function is used rarely is a very
 
 CREATE TABLE routes(
 from_ 	VARCHAR(50) NOT NULL PRIMARY KEY,

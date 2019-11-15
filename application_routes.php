@@ -7,31 +7,14 @@
             $query = "select username from Faculty_pos where position = '".$to_."';";
             $result = pg_query($db, $query.";");
             $to_username = pg_fetch_row($result)[0];
-            if(!$to_username){
-                header("Location: error.php");
-                //TODO error no director
-            }
         }
-        else if($to_=="CSE_HOD"){
-
-            $query = "select username from Faculty_pos where position = 'HOD' and dept='CSE';";
-            $result = pg_query($db, $query.";");
-            $to_username = pg_fetch_row($result)[0];
-        }
-        else if($to_=="ME_HOD"){
-
-            $query = "select username from Faculty_pos where position = 'HOD' and dept='ME';";
-            $result = pg_query($db, $query.";");
-            $to_username = pg_fetch_row($result)[0];
-        }
-        else if($to_=="EE_HOD"){
-
-            $query = "select username from Faculty_pos where position = 'HOD' and dept='EE';";
-            $result = pg_query($db, $query.";");
-            $to_username = pg_fetch_row($result)[0];
-        }
-        else{
+        else if($to_=="Approved"){
             $to_username="Approved";
+        }
+        else {
+            $query = "select username from Faculty_pos where position = '".$to_."';";
+            $result = pg_query($db, $query.";");
+            $to_username = pg_fetch_row($result)[0];
         }
 
         if(!$to_username){
@@ -50,17 +33,11 @@
 		$count = pg_num_rows($result);
         //TODO handle count=0;
         $user = pg_fetch_row($result);
-        if($user[2]=="Director"){
-            $from_="Director";
-        }
-        else if($user[2]=="DFA" || $user[2]=="ADFA"){
-            $from_=$user[2];
-        }
-        else if($user[2]=="HOD"){
-            $from_=$user[1].'_'.$user[2];
+        if($user[2]=="Faculty"){
+            $from_=$user[1]."_FAC";
         }
         else{
-            $from_=$user[1]."_FAC";
+            $from_=$user[2];
         }
         //echo"from".$from_."\n";
         $query = "select to_ from routes where from_ = '".$from_."';";
@@ -74,12 +51,7 @@
 
     function setDefaultRoutes($db){
         //echo"setting efaults";
-        $query = "DROP TABLE routes;";
-        $result = pg_query($db, $query.";");
-        $query="CREATE TABLE routes(
-            from_ 	VARCHAR(25) NOT NULL PRIMARY KEY,
-            to_ 		VARCHAR(25) NOT NULL
-        );";
+        $query = "DELETE FROM routes;";
         $result = pg_query($db, $query.";");
         $query = "INSERT INTO routes VALUES('CSE_FAC','CSE_HOD');";
         $result = pg_query($db, $query.";");
@@ -96,6 +68,29 @@
         $query = "INSERT INTO routes VALUES('ADFA','DFA');";
         $result = pg_query($db, $query.";");
         $query = "INSERT INTO routes VALUES('DFA','Director');";
+        $result = pg_query($db, $query.";");
+        $query = "INSERT INTO routes VALUES('Director','Approved');";
+        $result = pg_query($db, $query.";");
+    }
+
+    function setAllRoutesApproved($db){
+        $query = "DELETE FROM routes;";
+        $result = pg_query($db, $query.";");
+        $query = "INSERT INTO routes VALUES('CSE_FAC','Approved');";
+        $result = pg_query($db, $query.";");
+        $query = "INSERT INTO routes VALUES('EE_FAC','Approved');";
+        $result = pg_query($db, $query.";");
+        $query = "INSERT INTO routes VALUES('ME_FAC','Approved');";
+        $result = pg_query($db, $query.";");
+        $query = "INSERT INTO routes VALUES('CSE_HOD','Approved');";
+        $result = pg_query($db, $query.";");
+        $query = "INSERT INTO routes VALUES('EE_HOD','Approved');";
+        $result = pg_query($db, $query.";");
+        $query = "INSERT INTO routes VALUES('ME_HOD','Approved');";
+        $result = pg_query($db, $query.";");
+        $query = "INSERT INTO routes VALUES('ADFA','Approved');";
+        $result = pg_query($db, $query.";");
+        $query = "INSERT INTO routes VALUES('DFA','Approved');";
         $result = pg_query($db, $query.";");
         $query = "INSERT INTO routes VALUES('Director','Approved');";
         $result = pg_query($db, $query.";");
