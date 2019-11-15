@@ -8,6 +8,7 @@
 ?>
 <script>
 function getUsers(dept){
+  $("#userTable tbody").empty();
     //alert(dept+user);
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function(){

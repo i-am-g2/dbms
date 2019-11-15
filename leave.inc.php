@@ -1,6 +1,14 @@
+
+<!-- 
+	Charlength 4
+	Status : pend, appr , rjct
+ -->
+
 <?php
+
 	session_start();
 	require "postgreCon.php";
+	require "application_routes.php";
 	if (isset($_POST['leave_submit'])) {
 		if(empty($_POST['start_date']) || empty($_POST['end_date']) || empty($_POST['description']) ) {
 			header("Location: create_leave.php?error=emptyfields");
@@ -13,7 +21,7 @@
 			$difference = $end_date_obj->diff ($start_date_obj);
 			$leave_days =  $difference->format("%a");
 			$borrow = max($leave_days - $days_left ,0 );
-
+			$next_user = getroutefromusername($db, $_SESSION['userId']);
 
 			$values = array(
 				"username" => $_SESSION['userId'],
@@ -21,9 +29,13 @@
 				"end_date"  => $_POST['end_date'],
 				"description" => $_POST['description'],
 				"status" => 'pend', 
-				"curr_holder" => 'abs',
+				"curr_holder" => $next_user,
 				"days_borrowed" => $borrow,
 			);
+
+			//TODO
+			/* Check if already application for above dates exist or not , */
+			/* Check if even after borrowing it is fulfillable or not */
 
 			$res = pg_insert($db,'applications',$values);
 			if($res) {

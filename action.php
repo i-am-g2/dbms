@@ -1,6 +1,14 @@
 <?php
 require("dash_head.php");
+require ("postgreCon.php");
+
+$sql = "select * from applications where curr_holder= '".$_SESSION['userId']."';";
+$result = pg_query($db, $sql);
 ?>
+
+
+
+
 <div id="content-wrapper">
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item">
@@ -10,26 +18,24 @@ require("dash_head.php");
 	</ol>
 	<div class="container-fluid">
 		<ul class="list-group">
-			<li class="list-group-item">
-				<p>Application</p>
-				<p>User </p>
-				<p>From to End</p>
-			</li>
-			<li class="list-group-item">
-				<p>Application</p>
-				<p>User </p>
-				<p>From to End</p>
-			</li>
-			<li class="list-group-item">
-				<p>Application</p>
-				<p>User </p>
-				<p>From to End</p>
-			</li>
-			<li class="list-group-item">
-				<p>Application</p>
-				<p>User </p>
-				<p>From to End</p>
-			</li>
+			
+			<?php 
+				while ($row = pg_fetch_row($result)) {
+
+					echo  "
+					<li class='list-group-item'>
+					<form method='post' action='redirect.inc.php'>
+						<p>Id :".$row['0']." </p>
+						<p>User".$row['1']." </p>
+						<p>".$row['2'] ." to ".$row['3'] ."</p>
+						<input type='text' name='redirect' id='hidInput'  value='". $row['0'] ."' >  
+						<button name='redirect_Submit'>View Details</button>
+					</form>";
+				}
+			?> 
+			
+			
+			
 		</ul>
 
 	</div>

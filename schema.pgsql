@@ -27,6 +27,20 @@ INSERT into remaining_leaves(username, yearId, daysleft) VALUES('jeetu',0,20);
 -- Default values
 Insert into credentials (username, password) values('jeetu','$2y$10$U9JqjksX6fvAcyrRGb3DI.U7Evical8rOB8OSWHc1fMUx5KVALDGK');
 
+CREATE Table comments (
+	app_id INT not null,
+	username varchar(50) not null,
+	created_at timestamp  not null Default NOW(),
+	text_ text not null,
+	FOREIGN KEY (username) REFERENCES credentials(username),
+	FOREIGN KEY (app_id) REFERENCES applications(id) 
+);
+
+
 -- 
+
 -- Sample Application
 -- INSErt into applications (username, start_date, end_date, description , status , curr_holder, d )
+
+-- 
+Insert into comments VALUES('3', 'jeetu' , NOW() , 'HI there');

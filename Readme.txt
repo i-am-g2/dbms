@@ -104,36 +104,38 @@ Admin Table Schema:
 Username(Primary Key),Password,{Power(int)=2;for main,1 for other}
 
 CREATE TABLE Admins(
-Username        VARCHAR(20) NOT NULL PRIMARY KEY
+Username        VARCHAR(50) NOT NULL PRIMARY KEY
 ,Password         VARCHAR(1000) NOT NULL
 ,Power      INTEGER NOT NULL
 );
 Power=2; Main admin that can create other admins, restore backups and everything
 Power=1; can only add users, modify application paths
 
+// Already Created
 CREATE TABLE credentials(
-username        VARCHAR(20) NOT NULL PRIMARY KEY
+username        VARCHAR(50) NOT NULL PRIMARY KEY
 ,Password         VARCHAR(1000) NOT NULL
 );
 
 CREATE TABLE Faculty_Pos(
-username        VARCHAR(20) NOT NULL PRIMARY KEY,
+username        VARCHAR(50) NOT NULL PRIMARY KEY,
 dept         VARCHAR(10) NOT NULL,
-Position		VARCHAR(20) NOT NULL
+Position		VARCHAR(50) NOT NULL
 );
 values for dept: CSE, ME, EE (case sensitive)
 values for position: Director,Faculty,HOD,DFA,ADFA    (case sensitive)
 
 
 CREATE TABLE routes(
-from_ 	VARCHAR(25) NOT NULL PRIMARY KEY,
-to_ 		VARCHAR(25) NOT NULL
+from_ 	VARCHAR(50) NOT NULL PRIMARY KEY,
+to_ 		VARCHAR(50) NOT NULL
 );
 values allowed: Approved, CSE_FAC,CSE_HOD, EE_FAC, EE_HOD, ME_HOD, ME_FAC, Director, DFA, ADFA;
 
 
 
 -----------------------------------
+
 
 
 -----------------------------------
