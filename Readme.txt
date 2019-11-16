@@ -120,7 +120,7 @@ username        VARCHAR(50) NOT NULL PRIMARY KEY
 CREATE TABLE Faculty_Pos(
 username        VARCHAR(50) NOT NULL PRIMARY KEY,
 dept         VARCHAR(10) NOT NULL,
-Position		VARCHAR(50) NOT NULL
+Position		VARCHAR(10) NOT NULL
 );
 values for dept: CSE, ME, EE (case sensitive)
 //old values for position: Director,Faculty,HOD,DFA,ADFA    (case sensitive)
@@ -134,13 +134,11 @@ to_ 		VARCHAR(50) NOT NULL
 );
 values allowed: Approved, CSE_FAC,CSE_HOD, EE_FAC, EE_HOD, ME_HOD, ME_FAC, Director, DFA, ADFA;
 
-
-
------------------------------------
-
-
-
------------------------------------
+CREATE TABLE logs{
+	admin_username	VARCHAR(50) NOT NULL,
+	log_	VARCHAR(200) NOT NULL,
+	time		TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+}
 
 
 

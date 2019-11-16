@@ -18,7 +18,10 @@ if (!isset($_SESSION['admin_login'])) {
     
 
 // Encoding array in JSON format
+    $query="INSERT INTO logs(admin_username,log_) VALUES('".$_SESSION['userId']."','deleted user".$username."');";
+    pg_query($db, $query . ";");
     echo "User deleted";
+    
     }
     catch(\Exception $e){
         echo "Deletion Failed! ".$e->getmessage();

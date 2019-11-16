@@ -38,9 +38,14 @@
 	session_start();
 	require_once __DIR__ . "/vendor/autoload.php";
 	$Permission=FALSE;
-	if(isset($_SESSION['UserId'])){
-		if($_SESSION['UserId']==$UserIdPara)
-			$Permission=TRUE;		
+	if(isset($_SESSION['userId'])){
+		if($_SESSION['UserId']!=$UserIdPara){
+			echo"<script type = 'text/javascript'>
+			alert('Not Enough Permissions');
+</script>";
+			header("Location: dashboard.php");
+		}
+
 	}
 	if(array_key_exists('button1', $_POST)) { 
 		update('button1fun'); 
@@ -72,6 +77,48 @@
 	else if(array_key_exists('button10', $_POST)) { 
 		update('button10fun'); 
 	}
+	else if(array_key_exists('buttonimage', $_POST)) { 
+		$target_dir = "Res/Image/";
+		$target_file = $target_dir.basename($_FILES["fileToUpload"]["name"]); //. $_GET['userId'];
+		$uploadOk = 1;
+		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+// Check if image file is a actual image or fake image
+		echo $imageFileType.$_GET['UserId'];
+    	$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    	if($check !== false) {
+    	    echo "File is an image - " . $check["mime"] . ".";
+    	    $uploadOk = 1;
+    	} else {
+    	    echo "File is not an image.";
+    	    $uploadOk = 0;
+    	}
+
+// Check if file already exists
+		if (file_exists($target_dir.$_GET['UserId'].".".$imageFileType)) {
+    		unlink($target_dir.$_GET['UserId'].".".$imageFileType);
+		}
+// Check file size
+		if ($_FILES["fileToUpload"]["size"] > 2000000) {
+		    echo "Sorry, your file is too large.";
+		    $uploadOk = 0;
+		}
+// Allow certain file formats
+		if($imageFileType != "jpg" ) {
+		    echo "Sorry, only JPG files are allowed.";
+		    $uploadOk = 0;
+		}
+// Check if $uploadOk is set to 0 by an error
+		if ($uploadOk == 0) {
+		    echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+		} else {
+    		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_dir.$_GET['UserId'].".".$imageFileType)) {
+        		echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+    		} else {
+        		echo "Sorry, there was an error uploading your file.";
+    		}
+		}
+	}
 	else if(array_key_exists('button11', $_POST)) { 
 		//delete news
 		$collection = (new MongoDB\Client)->YJUniversityDB->profiles;
@@ -99,7 +146,7 @@
 			}
 		}}
 		else{
-			echo"not array";
+			//echo"not array";
 		}
 			
 		$updateResult = $collection->updateOne(
@@ -722,6 +769,13 @@
 	}
 ?>
 	<div class='container' style='background-color:white;margin-top:1%;border-radius: 10px;'>
+	<br>
+	<form method="post" enctype="multipart/form-data">
+    Select image to upload:
+    	<input type="file" name="fileToUpload" id="fileToUpload">
+    	<input type="submit" value="Upload Image" class="button" name="buttonimage">
+	</form>
+	<hr>
 	<form method="post">
 		New Name:<br> 
 		<input type = "text" name="New_Name">
