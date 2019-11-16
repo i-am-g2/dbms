@@ -11,7 +11,7 @@ require("dash_head.php");
         <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
       </div>
       <div class="toast-body">
-        <?php echo $_SESSION['msg'] ?>
+        <!-- <?php echo $_SESSION['msg'] ?> -->
       </div>
     </div>
 

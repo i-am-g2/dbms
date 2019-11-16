@@ -50,15 +50,28 @@ require("dash_head.php");
 			<!--Comment Box-->
 			<form action="post_comment.inc.php" method="post" > 
 			<textarea name="comment" style="width:80%;height:150px;"></textarea><br>
-			<button name="comment_submit" class="btn btn-success">Submit</button>	
+			<button name="comment_submit" class="btn btn-success">Comment</button>	
 			</form>
 
-					<hr>
-			<form action="red_app.inc.php" method="post" id='buttonArea'>
-			<button  class="btn btn-dark" name="approve_submit"> Approve </button> 
-			<button  class="btn btn-dark" name="reject_submit">Resject</button>
-			<button  class="btn btn-dark" name="rev_submit">Revert</button>
-			</form>
+			<hr> 
+			<?php 
+				// Current Holder != UserName
+				if($application_obj['1'] != $application_obj['6']) {
+					echo "
+					<form action='red_app.inc.php' method='post' id='buttonArea'>
+					<button  class='btn btn-dark' name='approve_submit'> Approve </button> 
+					<button  class='btn btn-dark' name='reject_submit'>Resject</button>
+					<button  class='btn btn-dark' name='rev_submit'>Revert</button>
+					</form>
+					";
+				} else  {
+					echo "
+					<form action='red_app.inc.php' method='post' id='buttonArea'>
+					<button class='btn btn-dark' name='resubmit'> Resubmit </button> 
+					</form>
+					";
+				}
+			?>
 
 		</div>
 	</div>
