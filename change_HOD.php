@@ -48,55 +48,38 @@ function rowBuilder2($db,$field){
               <div class='col-sm-4'><button name='".$field."_Btn' class='btn btn-primary'>Update</button></div>
             </div><hr>";
 }
+function update($db,$position,$username){
+  $query="SELECT username from faculty_pos where position='".$position."'";
+  $old=pg_query($db, $query . ";")[0];
+
+  $query = "UPDATE faculty_pos set position='Faculty' where  position='".$position."'";
+  $result = pg_query($db, $query . ";");
+
+  $query="INSERT INTO logs(admin_username,log_) VALUES('".$_SESSION['userId']."','made".$username." ".$position.", Old position holder: ".$old."');";
+  pg_query($db, $query . ";");
+  
+  $query = "UPDATE faculty_pos set position='".$position."' where username='".$_POST['CSE_HOD_VAL']."'";
+  $result = pg_query($db, $query . ";");
+}
 
 if (array_key_exists('CSE_HOD_Btn', $_POST)) {
-
-  $query = "UPDATE faculty_pos set position='Faculty' where  position='CSE_HOD'";
-  $result = pg_query($db, $query . ";");
-
-  $query = "UPDATE faculty_pos set position='CSE_HOD' where username='".$_POST['CSE_HOD_VAL']."'";
-  $result = pg_query($db, $query . ";");
+  update($db,"CSE_HOD",$_POST['CSE_HOD_VAL']);
 }
 if (array_key_exists('EE_HOD_Btn', $_POST)) {
-
-  $query = "UPDATE faculty_pos set position='Faculty' where  position='EE_HOD'";
-  $result = pg_query($db, $query . ";");
-
-  $query = "UPDATE faculty_pos set position='EE_HOD' where username='".$_POST['EE_HOD_VAL']."'";
-  $result = pg_query($db, $query . ";");
+  update($db,"EE_HOD",$_POST['EE_HOD_VAL']);
 }
 if (array_key_exists('ME_HOD_Btn', $_POST)) {
-
-  $query = "UPDATE faculty_pos set position='Faculty' where position='ME_HOD'";
-  $result = pg_query($db, $query . ";");
-
-  $query = "UPDATE faculty_pos set position='ME_HOD' where username='".$_POST['ME_HOD_VAL']."'";
-  $result = pg_query($db, $query . ";");
+  update($db,"CSE_HOD",$_POST['ME_HOD_VAL']);
 }
 
 if (array_key_exists('DFA_Btn', $_POST)) {
-
-  $query = "UPDATE faculty_pos set position='Faculty' where position='DFA'";
-  $result = pg_query($db, $query . ";");
-
-  $query = "UPDATE faculty_pos set position='DFA' where username='".$_POST['DFA_VAL']."'";
-  $result = pg_query($db, $query . ";");
+  update($db,"DFA",$_POST['DFA_VAL']);
 }
 if (array_key_exists('ADFA_Btn', $_POST)) {
-
-  $query = "UPDATE faculty_pos set position='Faculty' where position='ADFA'";
-  $result = pg_query($db, $query . ";");
-
-  $query = "UPDATE faculty_pos set position='ADFA' where username='".$_POST['ADFA_VAL']."'";
-  $result = pg_query($db, $query . ";");
+  update($db,"ADFA_HOD",$_POST['ADFA_VAL']);
 }
 if (array_key_exists('Director_Btn', $_POST)) {
-
-  $query = "UPDATE faculty_pos set position='Faculty' where position='Director'";
-  $result = pg_query($db, $query . ";");
-
-  $query = "UPDATE faculty_pos set position='Director' where username='".$_POST['Director_VAL']."'";
-  $result = pg_query($db, $query . ";");
+  update($db,"Director",$_POST['Director_VAL']);
 }
 ?>
 <div id="content-wrapper">

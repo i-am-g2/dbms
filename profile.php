@@ -58,7 +58,7 @@ $research_outputs=$user['Research_Outputs'];
 $prizes=$user['Prizes'];
 $other_links=$user['Other_Links'];
 
-$img_src="Res/Image/".$UserIdPara.".png";
+$img_src="Res/Image/".$UserIdPara.".jpg";
 echo"
 <div class='container' style='background-color:white;margin-top:1%;border-radius: 10px;'>
 	<div class='row'>
@@ -138,7 +138,7 @@ echo"
 					<span class='text-dark'>$project_description</span>";
 				}}
 				else{
-					echo"not array";
+				//	echo"not array";
 				}
 		echo"
 			</div>
@@ -208,7 +208,8 @@ echo"
 			</div>
 		</div>
 		<hr>
-		<span>Collaboration Note: $collaboration</span><br>
+		<h2 class='diaplay-4'>Collaboration Note:</h2>
+		<span> $collaboration</span><br>
 		<hr>
 		<h2 class='diaplay-4'><small> Other Links </small></h2>
 		<div class='list-group'>";

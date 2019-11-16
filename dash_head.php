@@ -103,7 +103,7 @@ if (!isset($_SESSION['login'])) {
 					<span>Take Leave</span></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="profile.php?UserId=<?php echo $_SESSION['userId']?>">
+				<?php echo"<a class='nav-link' href='profile.php?UserId=".$_SESSION['userId']."' target='_blank'>"; ?>
 					<i class="fas fa-fw fa-chart-area"></i>
 					<span>My Profile</span></a>
 			</li>
