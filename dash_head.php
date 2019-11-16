@@ -93,7 +93,7 @@ if (!isset($_SESSION['login'])) {
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="tables.html">
+				<a class="nav-link" href="#" >
 					<i class="fas fa-id-badge"></i>
 					<span> Browse Profile </span></a>
 			</li>

@@ -34,9 +34,6 @@ if (isset($_POST['comment_submit'])) {
 			/* Redirect to Dashboard with msg */
 		}
 	}
-} else if (false) {
-	/* TODO Handle Button */
-	echo "a";
 } else {
 	header("Location: dashboard.php");
 }
