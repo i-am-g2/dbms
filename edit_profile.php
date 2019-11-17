@@ -41,11 +41,14 @@
 	if(isset($_SESSION['userId'])){
 		if($_SESSION['UserId']!=$UserIdPara){
 			echo"<script type = 'text/javascript'>
-			alert('Not Enough Permissions');
-</script>";
+			alert('Not Enough Permissions');</script>";
 			header("Location: dashboard.php");
 		}
 
+	}else{
+		echo"<script type = 'text/javascript'>
+			alert('Not Enough Permissions');</script>";
+			header("Location: index.php");
 	}
 	if(array_key_exists('button1', $_POST)) { 
 		update('button1fun'); 
