@@ -16,6 +16,8 @@ if (!isset($_SESSION['admin_login'])) {
     $result = pg_query($db,$query);
     $query = "DELETE FROM credentials where username ='".$username."';";
     $result = pg_query($db,$query);
+    $query = "DELETE FROM remaining_leaves where username ='".$username."';";
+    $result = pg_query($db,$query);
     
 
 // Encoding array in JSON format
