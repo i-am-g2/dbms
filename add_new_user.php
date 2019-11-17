@@ -34,7 +34,7 @@ if (array_key_exists('AddBtn', $_POST)) {
       if ($result) {
         addUser($_POST['userId']);
         pg_query($db, $query . ";");
-        $query="INSERT INTO logs(admin_username,log_) VALUES('".$_SESSION['userId']."','inserted user".$_POST['userId']."');";
+        $query="INSERT INTO admin_logs(admin_username,log_) VALUES('".$_SESSION['userId']."','inserted user".$_POST['userId']."');";
         pg_query($db, $query . ";");
         echo "<script type='text/javascript'>alert('New User Added!!');</script>";
       } else {

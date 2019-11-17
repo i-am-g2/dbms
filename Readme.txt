@@ -134,12 +134,11 @@ to_ 		VARCHAR(50) NOT NULL
 );
 values allowed: Approved, CSE_FAC,CSE_HOD, EE_FAC, EE_HOD, ME_HOD, ME_FAC, Director, DFA, ADFA;
 
-CREATE TABLE logs{
+CREATE TABLE admin_logs{
 	admin_username	VARCHAR(50) NOT NULL,
 	log_	VARCHAR(200) NOT NULL,
 	time		TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 }
-
 
 -----------------------------------
 

@@ -12,4 +12,9 @@ function addUser($userId){
     $collection->insertOne(['UserId'=>$userId]);
 }
 
+function deleteUser($userId){
+    $collection = (new MongoDB\Client)->YJUniversityDB->profiles;
+    $collection->deleteOne(['UserId'=>$userId]);
+}
+
 ?>
