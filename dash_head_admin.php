@@ -113,8 +113,14 @@ if (!isset($_SESSION['admin_login'])) {
 					<span> Delete an admin </span></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="ViewLogs.php">
+				<a class="nav-link" href="view_logs.php">
 					
 					<span> View Logs </span></a>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="backup.php">
+					
+					<span> Backup </span></a>
+			</li>
+
 		</ul>

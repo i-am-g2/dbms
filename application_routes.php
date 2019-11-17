@@ -49,8 +49,10 @@
         return getUserName($db,$to_);
     }
 
-    function setDefaultRoutes($db){
+    function setDefaultRoutes($db,$userId){
         //echo"setting efaults";
+        $query="INSERT INTO admin_logs(admin_username,log_) VALUES('".$userId."','changed routes to default');";
+        pg_query($db, $query . ";");
         $query = "DELETE FROM routes;";
         $result = pg_query($db, $query.";");
         $query = "INSERT INTO routes VALUES('CSE_FAC','CSE_HOD');";
@@ -73,7 +75,9 @@
         $result = pg_query($db, $query.";");
     }
 
-    function setAllRoutesApproved($db){
+    function setAllRoutesApproved($db,$userId){
+        $query="INSERT INTO admin_logs(admin_username,log_) VALUES('".$userId."','changed routes to all approved');";
+        pg_query($db, $query . ";");
         $query = "DELETE FROM routes;";
         $result = pg_query($db, $query.";");
         $query = "INSERT INTO routes VALUES('CSE_FAC','Approved');";
@@ -96,7 +100,10 @@
         $result = pg_query($db, $query.";");
     }
 
-    function setRoute($db,$from_,$to_){
+    function setRoute($db,$from_,$to_,$userId){
+        $query="INSERT INTO admin_logs(admin_username,log_) VALUES('".$userId."','set from:".$from_." to:".$to_."');";
+        pg_query($db, $query . ";");
+
         $query=" UPDATE routes set to_='".$to_."' where from_='".$from_. "';";
         $result = pg_query($db, $query.";");
     }

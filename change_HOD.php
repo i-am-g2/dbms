@@ -55,7 +55,7 @@ function update($db,$position,$username){
   $query = "UPDATE faculty_pos set position='Faculty' where  position='".$position."'";
   $result = pg_query($db, $query . ";");
 
-  $query="INSERT INTO logs(admin_username,log_) VALUES('".$_SESSION['userId']."','made".$username." ".$position.", Old position holder: ".$old."');";
+  $query="INSERT INTO admin_logs(admin_username,log_) VALUES('".$_SESSION['userId']."','made".$username." ".$position.", Old position holder: ".$old."');";
   pg_query($db, $query . ";");
   
   $query = "UPDATE faculty_pos set position='".$position."' where username='".$_POST['CSE_HOD_VAL']."'";

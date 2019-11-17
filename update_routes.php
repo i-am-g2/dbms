@@ -9,27 +9,27 @@
   //  echo getRouteFromUsername($db,"yogesh");
   if(array_key_exists('CSE_FAC_Btn', $_POST)  ) {
     //  echo "update cse fac";
-    setRoute($db,'CSE_FAC',$_POST['CSE_FAC_VAL']);
+    setRoute($db,'CSE_FAC',$_POST['CSE_FAC_VAL'],$_SESSION['userId']);
   }
   if(array_key_exists('EE_FAC_Btn', $_POST)  ) {
     //  echo "update cse fac";
-    setRoute($db,'EE_FAC',$_POST['EE_FAC_VAL']);
+    setRoute($db,'EE_FAC',$_POST['EE_FAC_VAL'],$_SESSION['userId']);
   }
   if(array_key_exists('ME_FAC_Btn', $_POST)  ) {
     //  echo "update cse fac";
-    setRoute($db,'ME_FAC',$_POST['ME_FAC_VAL']);
+    setRoute($db,'ME_FAC',$_POST['ME_FAC_VAL'],$_SESSION['userId']);
   }
   if(array_key_exists('CSE_HOD_Btn', $_POST)  ) {
     //  echo "update cse fac";
-    setRoute($db,'CSE_HOD',$_POST['CSE_FAC_VAL']);
+    setRoute($db,'CSE_HOD',$_POST['CSE_FAC_VAL'],$_SESSION['userId']);
   }
   if(array_key_exists('Defaults_Btn', $_POST)  ) {
     //  echo"set defaults";
-    setDefaultRoutes($db);
+    setDefaultRoutes($db,$_SESSION['userId']);
   }
   if(array_key_exists('Approved_Btn', $_POST)  ) {
     //  echo"set defaults";
-    setAllRoutesApproved($db);
+    setAllRoutesApproved($db,$_SESSION['userId']);
   }
   
   
