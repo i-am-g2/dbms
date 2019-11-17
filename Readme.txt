@@ -143,10 +143,10 @@ CREATE TABLE admin_logs{
 -----------------------------------
 
 TODO : before submitting application check overlap with existing in pending / Approved
-ON approval : change app parameters, add data to approved leaves table, deduce leave days, deduce next years leaved days 
-On Rejection : update app parameters, mark curr_holder null
-On revert : curr_holder = 'user' 
-
+ON approval : change app parameters , add data to approved leaves table (No need), deduce leave days, deduce next years leaved days 
+Form safety : Make sure user does not enter sql command in form 
+Complete Browse Profile Page
+Hande Errors
 -----------------------------------
 
 
