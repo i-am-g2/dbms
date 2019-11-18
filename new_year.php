@@ -28,8 +28,9 @@ if (array_key_exists('reset', $_POST)) {
       if (password_verify($_POST['password'], $pass)) {
         try {
           $leaves=$_POST['leaves'];
-          //TODO call stored procedure here
-          
+          //TODO stored procedure here
+          $query = "select NewYear();";
+    $result = pg_query($db, $query . ";");
         } catch (\PDOException $e) {
           echo $e->getMessage();
         }
