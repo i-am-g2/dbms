@@ -33,8 +33,15 @@ if (array_key_exists('AddBtn', $_POST)) {
       $result = pg_query($db, $query . ";");
       if ($result) {
         addUser($_POST['userId']);
+
         pg_query($db, $query . ";");
         $query="INSERT INTO admin_logs(admin_username,log_) VALUES('".$_SESSION['userId']."','inserted user".$_POST['userId']."');";
+        pg_query($db, $query . ";");
+        $leaves=$_POST['leaves'];
+        $query="INSERT INTO remaining_leaves VALUES('".$_SESSION['userId']."',0,".$leaves.");";
+        pg_query($db, $query . ";");
+        $leaves=$_POST['leaves'];
+        $query="INSERT INTO remaining_leaves VALUES('".$_SESSION['userId']."',1,".$leaves.");";
         pg_query($db, $query . ";");
         echo "<script type='text/javascript'>alert('New User Added!!');</script>";
       } else {
@@ -58,6 +65,9 @@ if (array_key_exists('AddBtn', $_POST)) {
           <input type='text' placeholder='User Name' name='userId' />
           <br>Password:<br>
           <input type="password" placeholder="Password" name="password" />
+          <br>
+          Leaves:<br>
+          <input type='number' placeholder='Leaves' name='leaves' step="1" />
           <br>
           <div class="form-group">
             <label for="sel1">Select Department:</label>
