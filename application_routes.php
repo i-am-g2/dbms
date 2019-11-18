@@ -1,15 +1,12 @@
 <?php
     function getUserName($db,$to_){
-        if($to_=="Approved"){
-            $to_username="Approved";
+        if($to_=="Approved"  || $to_='Disabled'){
+            $to_username=$to_;
         }
         else if($to_=="Director" || $to_=="DFA" || $to_=="ADFA"){
             $query = "select username from Faculty_pos where position = '".$to_."';";
             $result = pg_query($db, $query.";");
             $to_username = pg_fetch_row($result)[0];
-        }
-        else if($to_=="Approved"){
-            $to_username="Approved";
         }
         else {
             $query = "select username from Faculty_pos where position = '".$to_."';";

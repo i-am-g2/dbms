@@ -14,7 +14,8 @@
     <div class="container-fluid">
       
       <?php
-        $query = "select * from logs;";
+        $query = "select * from admin_logs;";
+        $result = pg_query($db, $query.";");
         $count = pg_num_rows($result);
         while ($count != 0) {
           $count = $count - 1;
@@ -25,7 +26,7 @@
           echo"<div class='col-sm-6'>".$log[1]."</div>";
           echo"</div>";  
         }
-        $result = pg_query($db, $query.";");
+        
       ?>    
     </div>
   </div>

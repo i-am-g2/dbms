@@ -21,7 +21,23 @@
   }
   if(array_key_exists('CSE_HOD_Btn', $_POST)  ) {
     //  echo "update cse fac";
-    setRoute($db,'CSE_HOD',$_POST['CSE_FAC_VAL'],$_SESSION['userId']);
+    setRoute($db,'CSE_HOD',$_POST['CSE_HOD_VAL'],$_SESSION['userId']);
+  }
+  if(array_key_exists('ME_HOD_Btn', $_POST)  ) {
+    //  echo "update cse fac";
+    setRoute($db,'ME_HOD',$_POST['ME_HOD_VAL'],$_SESSION['userId']);
+  }
+  if(array_key_exists('EE_HOD_Btn', $_POST)  ) {
+    //  echo "update cse fac";
+    setRoute($db,'EE_HOD',$_POST['EE_HOD_VAL'],$_SESSION['userId']);
+  }
+  if(array_key_exists('DFA_Btn', $_POST)  ) {
+    //  echo "update cse fac";
+    setRoute($db,'DFA',$_POST['DFA_VAL'],$_SESSION['userId']);
+  }
+  if(array_key_exists('ADFA_Btn', $_POST)  ) {
+    //  echo "update cse fac";
+    setRoute($db,'ADFA_HOD',$_POST['ADFA_VAL'],$_SESSION['userId']);
   }
   if(array_key_exists('Defaults_Btn', $_POST)  ) {
     //  echo"set defaults";
@@ -47,6 +63,7 @@
                         <option value="DFA">DFA</option>
                         <option value="ADFA">ADFA</option>
                         <option value="Director">Director</option>
+                        <option value="Approved">Approved</option>
                     </select></div>
                     <div class = "col-sm-4"><button name="CSE_FAC_Btn" class="btn btn-primary">Update</button></div>
                 </div>
@@ -59,6 +76,7 @@
                         <option value="DFA">DFA</option>
                         <option value="ADFA">ADFA</option>
                         <option value="Director">Director</option>
+                        <option value="Approved">Approved</option>
                     </select></div>
                     <div class = "col-sm-4"><button name="ME_FAC_Btn" class="btn btn-primary">Update</button></div>
                 </div>
@@ -71,6 +89,7 @@
                         <option value="DFA">DFA</option>
                         <option value="ADFA">ADFA</option>
                         <option value="Director">Director</option>
+                        <option value="Approved">Approved</option>
                     </select></div>
                     <div class = "col-sm-4"><button name="EE_FAC_Btn" class="btn btn-primary">Update</button></div>
                 </div>
@@ -82,6 +101,7 @@
                         <option value="DFA">DFA</option>
                         <option value="ADFA">ADFA</option>
                         <option value="Director">Director</option>
+                        <option value="Approved">Approved</option>
                     </select></div>
                     <div class = "col-sm-4"><button name="CSE_HOD_Btn" class="btn btn-primary">Update</button></div>
                 </div>
@@ -93,6 +113,7 @@
                         <option value="DFA">DFA</option>
                         <option value="ADFA">ADFA</option>
                         <option value="Director">Director</option>
+                        <option value="Approved">Approved</option>
                     </select></div>
                     <div class = "col-sm-4"><button name="EE_HOD_Btn" class="btn btn-primary">Update</button></div>
                 </div>
@@ -104,6 +125,7 @@
                         <option value="DFA">DFA</option>
                         <option value="ADFA">ADFA</option>
                         <option value="Director">Director</option>
+                        <option value="Approved">Approved</option>
                     </select></div>
                     <div class = "col-sm-4"><button name="ME_HOD_Btn" class="btn btn-primary">Update</button></div>
                 </div>
@@ -113,7 +135,7 @@
                     <div class = "col-sm-4"><label for="ADFA">Select Destination for ADFA:</label></div>
                     <div class = "col-sm-4"><select class="form-control" id="ADFA" name="ADFA_VAL">
                         <option value="DFA">DFA</option>
-                        <option value="Approve">Approve</option>
+                        <option value="Approved">Approved</option>
                         <option value="Director">Director</option>
                     </select></div>
                     <div class = "col-sm-4"><button name="ADFA_Btn" class="btn btn-primary">Update</button></div>
@@ -123,7 +145,7 @@
                 <div class = "row">
                     <div class = "col-sm-4"><label for="DFA">Select Destination for DFA:</label></div>
                     <div class = "col-sm-4"><select class="form-control" id="DFA" name="DFA_VAL">
-                        <option value="Approve">Approve</option>
+                        <option value="Approved">Approved</option>
                         <option value="Director">Director</option>
                     </select></div>
                     <div class = "col-sm-4"><button name="ADFA_Btn" class="btn btn-primary">Update</button></div>

@@ -132,13 +132,13 @@ CREATE TABLE routes(
 from_ 	VARCHAR(50) NOT NULL PRIMARY KEY,
 to_ 		VARCHAR(50) NOT NULL
 );
-values allowed: Approved, CSE_FAC,CSE_HOD, EE_FAC, EE_HOD, ME_HOD, ME_FAC, Director, DFA, ADFA;
+values allowed: Approved, CSE_FAC,CSE_HOD, EE_FAC, EE_HOD, ME_HOD, ME_FAC, Director, DFA, ADFA,Disabled;
 
-CREATE TABLE admin_logs{
+CREATE TABLE admin_logs(
 	admin_username	VARCHAR(50) NOT NULL,
 	log_	VARCHAR(200) NOT NULL,
 	time		TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-}
+)
 
 -----------------------------------
 

@@ -1,11 +1,17 @@
 <?php
+  session_start();
   require("dash_head_admin.php");
   require "postgreCon.php";
   if($db==false) {
 		header ("Location: error.php");
 		exit();
   }
-  session_start();
+  if (!isset($_SESSION['power'])) {
+    header("Location: admin_login.php?error=loginrequired");
+  } else if ($_SESSION['power'] == 1) {
+    header("Location: adminPanel.php?error=MainAdminOnly");
+  }
+  
 ?>
 <script>
 function deleteAdmin(user){

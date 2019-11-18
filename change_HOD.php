@@ -25,22 +25,26 @@ function rowBuilder2($db,$field){
               <div class='col-sm-4'><label for='".$field."'>Select ".$field." :</label></div>
               <div class='col-sm-4'><select class='form-control' id='".$field."' name='".$field."_VAL'>";
               if($field=="CSE_HOD"){
-                  $query = "select username from faculty_pos where dept='CSE'";
+                  $query = "select username,position from faculty_pos where dept='CSE'";
               }
               else if($field=="EE_HOD"){
-                $query = "select username from faculty_pos where dept='EE'";
+                $query = "select username,position from faculty_pos where dept='EE'";
               }
               else if($field=="ME_HOD"){
-                $query = "select username from faculty_pos where dept='ME'";
+                $query = "select username,position from faculty_pos where dept='ME'";
               }
               else{
-                $query = "select username from faculty_pos";
+                $query = "select username,position from faculty_pos";
               }
                   $result = pg_query($db, $query . ";");
                   $count = pg_num_rows($result);
                   while ($count != 0) {
                     $count = $count - 1;
-                    $username = pg_fetch_row($result)[0];
+                    $row=pg_fetch_row($result);
+                    $username = $row[0];
+                    $position = $row[1];
+                    if($position=="CSE_HOD" || $position=="EE_HOD" || $position=="ME_HOD" || $position=="DFA" || $position=="ADFA" || $position=="Director")
+                      continue;
                     echo "<option value='" . $username . "'>" . $username . "</option>";
                   }
                   
@@ -58,7 +62,7 @@ function update($db,$position,$username){
   $query="INSERT INTO admin_logs(admin_username,log_) VALUES('".$_SESSION['userId']."','made".$username." ".$position.", Old position holder: ".$old."');";
   pg_query($db, $query . ";");
   
-  $query = "UPDATE faculty_pos set position='".$position."' where username='".$_POST['CSE_HOD_VAL']."'";
+  $query = "UPDATE faculty_pos set position='".$position."' where username='".$username."'";
   $result = pg_query($db, $query . ";");
 }
 
@@ -69,7 +73,7 @@ if (array_key_exists('EE_HOD_Btn', $_POST)) {
   update($db,"EE_HOD",$_POST['EE_HOD_VAL']);
 }
 if (array_key_exists('ME_HOD_Btn', $_POST)) {
-  update($db,"CSE_HOD",$_POST['ME_HOD_VAL']);
+  update($db,"ME_HOD",$_POST['ME_HOD_VAL']);
 }
 
 if (array_key_exists('DFA_Btn', $_POST)) {

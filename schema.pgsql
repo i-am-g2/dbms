@@ -2,6 +2,7 @@ CREATE TABLE credentials(
 	username varchar(50) not NULL PRIMARY KEY,
 	password varchar(1000)
 );
+CREATE SEQUENCE application_id_seq;
 CREATE TABLE applications(
 	id INTEGER PRIMARY KEY DEFAULT nextval('application_id_seq'),
 	username VARCHAR(50) not null,  

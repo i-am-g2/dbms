@@ -40,6 +40,7 @@
 			
 			
 			$res = pg_insert($db,'applications',$values);
+			//var_dump($res);
 			if($res) {
 				/* Redirect to Dashboard with msg */
 				header("Location: dashboard.php?msg=Application_Submit_Successful");

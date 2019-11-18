@@ -7,6 +7,11 @@ if (!isset($_SESSION['power'])) {
 } else if ($_SESSION['power'] == 1) {
   header("Location: adminPanel.php?error=MainAdminOnly");
 }
+if (!isset($_SESSION['power'])) {
+	header("Location: admin_login.php?error=loginrequired");
+} else if ($_SESSION['power'] == 1) {
+	header("Location: adminPanel.php?error=MainAdminOnly");
+}
 
 require "postgreCon.php";
 if ($db == false) {
@@ -15,13 +20,13 @@ if ($db == false) {
 }
 if (array_key_exists('reset', $_POST)) {
   if ($_POST['newYear'] != "NEW YEAR") {
-    echo "<script type='text/javascript'>alert('Failed');</script>";
+    echo "<script type='text/javascript'>alert('Failed code 1');</script>";
   } else {
-    $query = "select password from admin_credentials where username = '" . $_SESSION['userId'] . "';";
+    $query = "select password from Admins where username = '" . $_SESSION['userId'] . "';";
     $result = pg_query($db, $query . ";");
     $count = pg_num_rows($result);
     if ($count == 0) {
-      echo "<script type='text/javascript'>alert('Failed');</script>";
+      echo "<script type='text/javascript'>alert('Failed code 2');</script>";
     } else {
       $pass = pg_fetch_row($result)[0];
 
@@ -29,13 +34,13 @@ if (array_key_exists('reset', $_POST)) {
         try {
           $leaves=$_POST['leaves'];
           //TODO stored procedure here
-          $query = "select NewYear();";
-    $result = pg_query($db, $query . ";");
+          $query = "select NewYear(".$leaves.");";
+          $result = pg_query($db, $query . ";");
         } catch (\PDOException $e) {
           echo $e->getMessage();
         }
       } else {
-        header("Location: index.php?error=wrongpassword&message=Password_Error&username=" . $_POST['userId']);
+        echo "<script type='text/javascript'>alert('Failed code 3');</script>";
       }
     }
   }
@@ -53,7 +58,7 @@ if (array_key_exists('reset', $_POST)) {
       <div class="form">
         <form class="login-form" method="post">
           Enter "NEW YEAR" (without quotes) in the following field and press confirm button to reset all leaves:<br>
-          <input type='text' placeholder='User Name' name='newYear' />
+          <input type='text' placeholder='NEW YEAR' name='newYear' />
           <br>Login Password:<br>
           <input type="password" placeholder="Password" name="password" />
           <br>
@@ -74,7 +79,7 @@ if (array_key_exists('reset', $_POST)) {
   </div>
 </div>
 <script>
-  $(".sidebar li:eq(9)").addClass(" active ");
+  $(".sidebar li:eq(8)").addClass(" active ");
 </script>
 
 <?php

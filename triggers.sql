@@ -6,7 +6,7 @@ $$
 DECLARE
     count_ int;
 BEGIN
-    IF NEW.to_='Approved' THEN
+    IF NEW.to_='Approved' || NEW.to_='Disabled' THEN
         return NEW;
     END IF;
     select into count_ count(username) from faculty_pos where position=NEW.to_;
@@ -40,7 +40,7 @@ $$
 DECLARE
     count_ int;
 BEGIN
-    IF NEW.to_='Approved' THEN
+    IF NEW.to_='Approved' || NEW.to_='Disabled' THEN
         return NEW;
     END IF;
     select into count_ count(username) from faculty_pos where position=NEW.to_;
@@ -127,5 +127,32 @@ CREATE TRIGGER bef_faculty_update_tr
     EXECUTE Procedure bef_faculty_update();
 
 -------------------------------------------------------------------
+--if an hod iss deleted then the corresponding route is automaticaly set to the next person in the cycle.
+
+
+CREATE OR REPLACE FUNCTION bef_faculty_delete()
+    RETURNS trigger as
+$$
+DECLARE
+    _to VARCHAR(50);
+BEGIN
+    IF OLD.position='Faculty' THEN
+        RETURN OLD;
+    ELSE 
+        SELECT INTO _to to_ from routes where from_=OLD.position;
+        UPDATE routes SET to_= _to where to_=OLD.position;
+    END IF;
+    RETURN OLD;
+END
+$$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS bef_faculty_delete_tr ON faculty_pos;
+
+CREATE TRIGGER bef_faculty_delete_tr
+    BEFORE DELETE
+    ON faculty_pos
+    FOR EACH Row
+    EXECUTE Procedure bef_faculty_delete();
 
 
