@@ -45,7 +45,7 @@
   }
   if(array_key_exists('Approved_Btn', $_POST)  ) {
     //  echo"set defaults";
-    setAllRoutesApproved($db,$_SESSION['userId']);
+    setAllRoutesDisabled($db,$_SESSION['userId']);
   }
   
   
@@ -64,6 +64,7 @@
                         <option value="ADFA">ADFA</option>
                         <option value="Director">Director</option>
                         <option value="Approved">Approved</option>
+                        <option value="Disabled">Disable</option>
                     </select></div>
                     <div class = "col-sm-4"><button name="CSE_FAC_Btn" class="btn btn-primary">Update</button></div>
                 </div>
@@ -77,6 +78,7 @@
                         <option value="ADFA">ADFA</option>
                         <option value="Director">Director</option>
                         <option value="Approved">Approved</option>
+                        <option value="Disabled">Disable</option>
                     </select></div>
                     <div class = "col-sm-4"><button name="ME_FAC_Btn" class="btn btn-primary">Update</button></div>
                 </div>
@@ -90,6 +92,7 @@
                         <option value="ADFA">ADFA</option>
                         <option value="Director">Director</option>
                         <option value="Approved">Approved</option>
+                        <option value="Disabled">Disable</option>
                     </select></div>
                     <div class = "col-sm-4"><button name="EE_FAC_Btn" class="btn btn-primary">Update</button></div>
                 </div>
@@ -102,6 +105,7 @@
                         <option value="ADFA">ADFA</option>
                         <option value="Director">Director</option>
                         <option value="Approved">Approved</option>
+                        <option value="Disabled">Disable</option>
                     </select></div>
                     <div class = "col-sm-4"><button name="CSE_HOD_Btn" class="btn btn-primary">Update</button></div>
                 </div>
@@ -114,6 +118,7 @@
                         <option value="ADFA">ADFA</option>
                         <option value="Director">Director</option>
                         <option value="Approved">Approved</option>
+                        <option value="Disabled">Disable</option>
                     </select></div>
                     <div class = "col-sm-4"><button name="EE_HOD_Btn" class="btn btn-primary">Update</button></div>
                 </div>
@@ -126,6 +131,7 @@
                         <option value="ADFA">ADFA</option>
                         <option value="Director">Director</option>
                         <option value="Approved">Approved</option>
+                        <option value="Disabled">Disable</option>
                     </select></div>
                     <div class = "col-sm-4"><button name="ME_HOD_Btn" class="btn btn-primary">Update</button></div>
                 </div>
@@ -137,6 +143,7 @@
                         <option value="DFA">DFA</option>
                         <option value="Approved">Approved</option>
                         <option value="Director">Director</option>
+                        <option value="Disabled">Disable</option>
                     </select></div>
                     <div class = "col-sm-4"><button name="ADFA_Btn" class="btn btn-primary">Update</button></div>
                 </div>
@@ -147,13 +154,14 @@
                     <div class = "col-sm-4"><select class="form-control" id="DFA" name="DFA_VAL">
                         <option value="Approved">Approved</option>
                         <option value="Director">Director</option>
+                        <option value="Disabled">Disable</option>
                     </select></div>
                     <div class = "col-sm-4"><button name="ADFA_Btn" class="btn btn-primary">Update</button></div>
                 </div>
                 <hr>
                 <div><button name="Defaults_Btn" class="btn btn-primary">Set Defaults</button>
                 
-                <button name="Approved_Btn" class="btn btn-primary">Set All Approved</button></div>
+                <button name="Approved_Btn" class="btn btn-primary">Set All Disabled</button></div>
                 <hr>          
 
 

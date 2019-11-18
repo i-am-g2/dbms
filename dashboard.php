@@ -1,5 +1,12 @@
 <?php
 require("dash_head.php");
+
+if(isset($_GET['alert'])){
+  //echo"ll";
+  $alert=$_GET['alert'];
+  //echo "<script type='text/javascript'>alert('".$alert."');</script>";
+echo $alert;
+}
 ?>
 <div id="content-wrapper">
   <div class="container-fluid">

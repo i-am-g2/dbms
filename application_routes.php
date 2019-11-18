@@ -1,6 +1,7 @@
 <?php
     function getUserName($db,$to_){
-        if($to_=="Approved"  || $to_='Disabled'){
+        //echo $to_;
+        if($to_=="Approved"  || $to_=='Disabled'){
             $to_username=$to_;
         }
         else if($to_=="Director" || $to_=="DFA" || $to_=="ADFA"){
@@ -96,6 +97,32 @@
         $query = "INSERT INTO routes VALUES('Director','Approved');";
         $result = pg_query($db, $query.";");
     }
+
+    function setAllRoutesDisabled($db,$userId){
+        $query="INSERT INTO admin_logs(admin_username,log_) VALUES('".$userId."','changed routes to all approved');";
+        pg_query($db, $query . ";");
+        $query = "DELETE FROM routes;";
+        $result = pg_query($db, $query.";");
+        $query = "INSERT INTO routes VALUES('CSE_FAC','Disabled');";
+        $result = pg_query($db, $query.";");
+        $query = "INSERT INTO routes VALUES('EE_FAC','Disabled');";
+        $result = pg_query($db, $query.";");
+        $query = "INSERT INTO routes VALUES('ME_FAC','Disabled');";
+        $result = pg_query($db, $query.";");
+        $query = "INSERT INTO routes VALUES('CSE_HOD','Disabled');";
+        $result = pg_query($db, $query.";");
+        $query = "INSERT INTO routes VALUES('EE_HOD','Disabled');";
+        $result = pg_query($db, $query.";");
+        $query = "INSERT INTO routes VALUES('ME_HOD','Disabled');";
+        $result = pg_query($db, $query.";");
+        $query = "INSERT INTO routes VALUES('ADFA','Disabled');";
+        $result = pg_query($db, $query.";");
+        $query = "INSERT INTO routes VALUES('DFA','Disabled');";
+        $result = pg_query($db, $query.";");
+        $query = "INSERT INTO routes VALUES('Director','Disabled');";
+        $result = pg_query($db, $query.";");
+    }
+
 
     function setRoute($db,$from_,$to_,$userId){
         $query="INSERT INTO admin_logs(admin_username,log_) VALUES('".$userId."','set from:".$from_." to:".$to_."');";

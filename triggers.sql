@@ -6,7 +6,7 @@ $$
 DECLARE
     count_ int;
 BEGIN
-    IF NEW.to_='Approved' || NEW.to_='Disabled' THEN
+    IF NEW.to_='Approved' OR NEW.to_='Disabled' THEN
         return NEW;
     END IF;
     select into count_ count(username) from faculty_pos where position=NEW.to_;
@@ -40,7 +40,7 @@ $$
 DECLARE
     count_ int;
 BEGIN
-    IF NEW.to_='Approved' || NEW.to_='Disabled' THEN
+    IF NEW.to_='Approved' OR NEW.to_='Disabled' THEN
         return NEW;
     END IF;
     select into count_ count(username) from faculty_pos where position=NEW.to_;
@@ -156,3 +156,45 @@ CREATE TRIGGER bef_faculty_delete_tr
     EXECUTE Procedure bef_faculty_delete();
 
 
+---------------------------
+-----Delete comments and applications when user is deleted
+
+CREATE OR REPLACE FUNCTION bef_user_delete()
+    RETURNS trigger as
+$$
+BEGIN
+    DELETE from applications where username=OLD.username;
+    DELETE from comments where username=OLD.username;
+    RETURN OLD;
+END
+$$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS bef_user_delete_tr ON credentials;
+
+CREATE TRIGGER bef_user_delete_tr
+    BEFORE DELETE
+    ON credentials
+    FOR EACH Row
+    EXECUTE Procedure bef_user_delete();
+
+
+
+CREATE OR REPLACE FUNCTION bef_application_delete()
+    RETURNS trigger as
+$$
+BEGIN
+    DELETE from comments where app_id=OLD.id;
+    RETURN OLD;
+END
+$$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS bef_application_delete_tr ON applications;
+
+CREATE TRIGGER bef_application_delete_tr
+    BEFORE DELETE
+    ON applications
+    FOR EACH Row
+    EXECUTE Procedure bef_application_delete();
+-----------------------------------------------------------

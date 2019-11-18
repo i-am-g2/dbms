@@ -38,18 +38,19 @@
 	session_start();
 	require_once __DIR__ . "/vendor/autoload.php";
 	$Permission=FALSE;
+	echo $_SESSION['userId'];
+	$UserIdPara = $_GET['UserId'];
 	if(isset($_SESSION['userId'])){
 		if($_SESSION['UserId']!=$UserIdPara){
-			echo"<script type = 'text/javascript'>
-			alert('Not Enough Permissions');</script>";
-			header("Location: dashboard.php");
+		//	echo"<script type = 'text/javascript'>alert('Not Enough Permissions');</script>";
+			header("Location: dashboard.php?alert=You_cannot_edit_others'_profile");
 		}
 
 	}else{
-		echo"<script type = 'text/javascript'>
-			alert('Not Enough Permissions');</script>";
+	//	echo"<script type = 'text/javascript'>alert('Not Enough Permissions');</script>";
 			header("Location: index.php");
 	}
+
 	if(array_key_exists('button1', $_POST)) { 
 		update('button1fun'); 
 	} 
