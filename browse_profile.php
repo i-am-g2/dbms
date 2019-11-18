@@ -6,12 +6,18 @@ $result = pg_query($db, $query);
 ?>
 <div id="content-wrapper">
 	<div class="container-fluid">
-	
+	<ul>
+	<div>
+	<h4>Available Users</h4>
+	<ul class="list-group">
 	<?php 
-		while ($row = pg_fetch_row($result)) {
-			echo $row['0'];
+		$html = "<li><a href = ''></a></li>" ;
+		
+		while($row = pg_fetch_row($result)) {
+			echo "<a class='list-group-item list-group-item-action 'href = 'profile.php?UserId=".$row['0']."'>".$row['0']."</a>";
 		}
-	?>
+	?></ul>
+	</div>
 	
 
 </div>

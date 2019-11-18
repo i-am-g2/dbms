@@ -7,6 +7,13 @@
 require("dash_head.php");
 ?>
 
+<script>
+function submitFunc() {
+	document.getElementById("cmnt_form").submit();
+	return true;
+}
+</script>
+
 <link rel="stylesheet" href="Res/CSS/customappdetails.css">
 
 <div id="content-wrapper">
@@ -48,7 +55,7 @@ require("dash_head.php");
 			</ul>
 
 			<!--Comment Box-->
-			<form action="post_comment.inc.php" method="post" > 
+			<form action="post_comment.inc.php" method="post" id="cmnt_form" > 
 			<textarea name="comment" style="width:80%;height:150px;"></textarea><br>
 			<button name="comment_submit" class="btn btn-success">Comment</button>	
 			</form>
@@ -60,7 +67,7 @@ require("dash_head.php");
 					echo "
 					<form action='red_app.inc.php' method='post' id='buttonArea'>
 					<button  class='btn btn-dark' name='approve_submit'> Approve </button> 
-					<button  class='btn btn-dark' name='reject_submit'>Resject</button>
+					<button  class='btn btn-dark' name='reject_submit'>Reject</button>
 					<button  class='btn btn-dark' name='rev_submit'>Revert</button>
 					</form>
 					";

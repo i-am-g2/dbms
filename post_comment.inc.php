@@ -20,10 +20,7 @@ if (isset($_POST['comment_submit'])) {
 			"text_" => $_POST['comment']
 		);
 
-		//TODO
-		/* Check if already application for above dates exist or not , */
-		/* Check if even after borrowing it is fulfillable or not */
-
+			
 		$res = pg_insert($db, 'comments', $values);
 		if ($res) {
 			header("Location: action_app_details.php");

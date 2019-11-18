@@ -33,14 +33,17 @@
 				"days_borrowed" => $borrow,
 			);
 
+			
 			//TODO
-			/* Check if already application for above dates exist or not , */
+			/* Check if already leave for above dates exist or not , */
 			/* Check if even after borrowing it is fulfillable or not */
-
+			
+			
 			$res = pg_insert($db,'applications',$values);
 			if($res) {
 				/* Redirect to Dashboard with msg */
-				echo "Success";
+				header("Location: dashboard.php?msg=Application_Submit_Successful");
+				// echo "Success";
 			} else {
 				echo "fail";
 				/* Redirect to Dashboard with msg */
