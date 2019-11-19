@@ -919,7 +919,7 @@
 			$projects=$user['Projects'];
 			$research_outputs=$user['Research_Outputs'];
 			$conference_papers=$research_outputs['Conference_Papers'];
-			$articles=$research_outputs['Papers'];
+			$articles=$research_outputs['Articles'];
 			$others=$research_outputs['Others'];
 			$prizes=$user['Prizes'];
 			$other_links=$user['Other_Links'];
@@ -945,8 +945,8 @@
 			Title:<input type = 'text' name='New_Project_Title'><br>
 			Link:<input type = 'text' name='New_Project_Link'><br>
 			Description:<input type = 'textarea' name='New_Project_Description'><br>
-			Time Begin: (Month-year):<input type = 'date' name='New_Project_Time_Begin'><br>
-			Time End: (Month-year):<input type = 'date' name='New_Project_Time_End'>
+			Time Begin:<input type = 'date' name='New_Project_Time_Begin'><br>
+			Time End:<input type = 'date' name='New_Project_Time_End'>
 			<input type='submit' name='button18' class='button' value='Add'/><br><hr>
 			";
 
@@ -973,7 +973,7 @@
 			Paper Conference Title:<input type = 'text' name='New_Conference_Paper_Title'><br>
 			Link:<input type = 'text' name='New_Paper_Link'><br>
 			Description:<input type = 'textarea' name='New_Paper_Description'><br>
-			Time (Month-year):<input type = 'date' name='New_Paper_Time'><br>
+			Time:<input type = 'date' name='New_Paper_Time'><br>
 			Citations:<input type = 'text' name='New_Paper_Citations'>
 			
 			<input type='submit' name='button20' class='button' value='Add'/><br><hr>
@@ -984,7 +984,7 @@
 				$cnt=0;
 			foreach($articles as $news){
 				$cnt=$cnt + 1;
-				$title=$news['Paper_Title'];
+				$title=$news['Title'];
 				echo"$cnt : $title<br>";
 			}
 			if($cnt==0){
@@ -1002,7 +1002,7 @@
 			Paper Conference Title:<input type = 'text' name='New_Conference_Article_Title'><br>
 			Link:<input type = 'text' name='New_Article_Link'><br>
 			Description:<input type = 'textarea' name='New_Article_Description'><br>
-			Time (Month-year):<input type = 'date' name='New_Article_Time'>
+			Time:<input type = 'date' name='New_Article_Time'>
 			
 			<input type='submit' name='button22' class='button' value='Add'/><br><hr>
 			";
@@ -1029,7 +1029,7 @@
 			Title:<input type = 'text' name='New_Others_Title'><br>
 			Link:<input type = 'text' name='New_Others_Link'><br>
 			Description:<input type = 'textarea' name='New_Others_Description'><br>
-			Time (Month-year):<input type = 'date' name='New_Others_Time'>			
+			Time:<input type = 'date' name='New_Others_Time'>			
 			<input type='submit' name='button24' class='button' value='Add'/><br><hr>
 			";
 

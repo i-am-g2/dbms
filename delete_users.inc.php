@@ -16,15 +16,13 @@ try {
     $result = pg_query($db, $query);
     $query = "DELETE FROM credentials where username ='" . $username . "';";
     $result = pg_query($db, $query);
-    $query = "DELETE FROM remaining_leaves where username ='" . $username . "';";
-    $result = pg_query($db, $query);
 
 
     // Encoding array in JSON format
 
     $query = "INSERT INTO admin_logs(admin_username,log_) VALUES('" . $_SESSION['userId'] . "','deleted user " . $username . "');";
     pg_query($db, $query . ";");
-    deleteUser($_SESSION['userId']);
+    deleteUser($username);
     echo "User deleted";
 } catch (\Exception $e) {
     echo "Deletion Failed! " . $e->getmessage();

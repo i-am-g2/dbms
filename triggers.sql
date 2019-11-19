@@ -165,6 +165,7 @@ $$
 BEGIN
     DELETE from applications where username=OLD.username;
     DELETE from comments where username=OLD.username;
+    DELETE from remaining_leaves where username=OLD.username;
     RETURN OLD;
 END
 $$

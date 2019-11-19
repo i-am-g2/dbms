@@ -124,7 +124,7 @@ echo"
 				if (is_array($projects) || is_object($projects)){
 					//var_dump($projects);
 				foreach($projects as $project){
-					echo"array";
+				//	echo"array";
 					$project_title=$project['Title'];
 					$project_description=$project['Description'];
 					$project_link=$project['Link'];
@@ -132,7 +132,7 @@ echo"
 					$time_end=$project['Time_End'];
 					if($project_link==NULL)
 					$project_link="#";
-					echo"<a href='$project_link'><h4 class='text-primary' style='margin:0'>$project_title</h4></a>
+					echo"<a href='$project_link' style='text-decoration:none;'><h4 class='text-primary' style='margin:0'>$project_title</h4></a>
 					<span class='text-muted' style='margin-top:0'><small>$time_begin | $time_end</small></span>
 					<br>
 					<span class='text-dark'>$project_description</span>";
@@ -154,7 +154,7 @@ echo"
 			//var_dump($articles);
 			if (is_array($conference_papers) || is_object($conference_papers))
 			foreach($conference_papers as $project){
-				$project_title=$project['Title'];
+				$project_title=$project['Paper_Title'];
 				$conference_title=$project['Conference_Title'];
 				$project_description=$project['Description'];
 				$project_link=$project['Link'];
@@ -163,12 +163,12 @@ echo"
 				if($project_link==NULL)
 					$project_link="#";
 				echo"
-					<a href='$project_link'><h4 class='text-primary' style='margin:0'>$project_title</h4></a>
+					<a href='$project_link'  style='text-decoration:none;'><h4 class='text-primary' style='margin:0'>$project_title</h4></a>
 					<span class='text-muted' style='margin-top:0'><small>$time</small></span>
 					<br>
-					<p class='text-secondary'>$conference_title</p>
+					<span class='text-secondary'>$conference_title</span><br>
 					<span class='text-dark'>$project_description</span><br>
-					<p> Citations1:$citations</p>
+					<p class='text-muted'> Citations:$citations</p>
 				";
 			}
 			if (is_array($articles) || is_object($articles))
@@ -182,10 +182,10 @@ echo"
 				if($project_link==NULL)
 					$project_link="#";
 				echo"
-					<a href='$project_link'><h4 class='text-primary' style='margin:0'>$project_title</h4></a>
+					<a href='$project_link'style='text-decoration:none;'><h4 class='text-primary' style='margin:0'>$project_title</h4></a>
 					<span class='text-muted' style='margin-top:0'><small>$time</small></span>
 					<br>
-					<p class='text-secondary'>$conference_title</p>
+					<span class='text-secondary'>$conference_title</span><br>
 					<span class='text-dark'>$project_description</span><br>
 				";
 			}
@@ -197,8 +197,8 @@ echo"
 				$time=$project['Time'];
 				if($project_link==NULL)
 					$project_link="#";
-				echo" y  
-					<a href='$project_link'><h4 class='text-primary' style='margin:0'>$project_title</h4></a>
+				echo"
+					<a href='$project_link'  style='text-decoration:none;'><h4 class='text-primary' style='margin:0'>$project_title</h4></a>
 					<span class='text-muted' style='margin-top:0'><small>$time</small></span>
 					<br>
 					<span class='text-dark'>$project_description</span><br>
