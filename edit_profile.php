@@ -751,7 +751,7 @@
 		$collection = (new MongoDB\Client)->YJUniversityDB->profiles;	
 		$updateResult = $collection->updateOne(
 			[ 'UserId' => $UserIdPara ],
-			[ '$set' => [ 'EmailId' => $new_val ]]
+			[ '$set' => [ 'Note' => $new_val ]]
 		);
 	}
 	function button9fun() {
@@ -760,7 +760,7 @@
 		$collection = (new MongoDB\Client)->YJUniversityDB->profiles;	
 		$updateResult = $collection->updateOne(
 			[ 'UserId' => $UserIdPara ],
-			[ '$set' => [ 'Linkedin_Link' => $new_val ]]
+			[ '$set' => [ 'About_Me' => $new_val ]]
 		);
 	}
 	function button10fun() {
@@ -769,7 +769,7 @@
 		$collection = (new MongoDB\Client)->YJUniversityDB->profiles;	
 		$updateResult = $collection->updateOne(
 			[ 'UserId' => $UserIdPara ],
-			[ '$set' => [ 'Google_Scholar_Link' => $new_val ]]
+			[ '$set' => [ 'Collaboration' => $new_val ]]
 		);
 	}
 ?>

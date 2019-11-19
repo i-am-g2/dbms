@@ -44,14 +44,14 @@ $lab=$user['Lab'];
 $headline=$user['Headline'];
 $emailId=$user['EmailId'];
 $linkedin_link=$user['Linkedin_Link'];
-$google_scholar=$user['Google_Scholar'];
+$google_scholar=$user['Google_Scholar_Link'];
 $latest_news=$user['Latest_News'];
 $note=$user['Note'];
 $about_me=$user['About_Me'];
 $research_interests=$user['Research_Interests'];
 //var_dump($research_interests);
 $collaboration=$user['Collaboration'];
-$teaching_interest=$user['Teaching_Interest'];
+$teaching_interest=$user['Teaching_Interests'];
 $projects=$user['Projects'];
 //var_dump($projects);
 $research_outputs=$user['Research_Outputs'];
@@ -65,8 +65,8 @@ echo"
 		<div class='col-sm-3'>
 			<img src='$img_src' class='img-thumbnail' alt='DP' style='max-width: 100%;height: auto;margin:2%;'></img>
 			<div class='text-center'>
-				<img src='Res/Image/gscholar.jpeg' alt='G' style='max-width: 40%;height: auto;margin-left:0%;margin-top:2%;margin-bottom:2%;margin-right:0%'></img>
-				<img src='Res/Image/LinkedIn_logo.png' alt='L' style='max-width: 20%;height: auto;margin-right:2%;margin-top:2%;margin-bottom:2%;margin-left:0%'></img>	
+				<a href='".$google_scholar."'><img src='Res/Image/gscholar.jpeg' alt='G' style='max-width: 40%;height: auto;margin-left:0%;margin-top:2%;margin-bottom:2%;margin-right:0%'></img></a>
+				<a href='".$linkedin_link."'><img src='Res/Image/LinkedIn_logo.png' alt='L' style='max-width: 20%;height: auto;margin-right:2%;margin-top:2%;margin-bottom:2%;margin-left:0%'></img>	</a>
 			</div>
     	</div>
     	<div class='col-sm-9'>

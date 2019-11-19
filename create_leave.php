@@ -30,11 +30,12 @@ $result = pg_query($db, $sql);
 			if (this.readyState == 4 && this.status == 200) {
 				console.log(this.responseText);
 				if (this.responseText == 1) { /* Already one application */
-					$("input, textarea, button").prop("disabled",true);
-					$("button").removeClass();
-					$("button").addClass("btn btn-secondary diabled");
-					$("button").prop("aria-disabled",true);
+					$("textarea").prop("disabled",true);
+					$("#button_id","#frm").removeClass();
+					$("#button_id","#frm").addClass("btn btn-secondary diabled");
+					$("#button_id","#frm").prop("aria-disabled",true);
 					$("#msgS").prop("hidden",false);
+					$("#button_id").css({"visibility":"hidden"})
 				} 
 
 			}
@@ -85,12 +86,12 @@ $result = pg_query($db, $sql);
 
 						<div class="form">
 
-							<form class="leave-form" action="leave.inc.php" method="post">
+							<form class="leave-form" action="leave.inc.php" method="post" id="frm">
 								<label> Start Date : </label> <input type="date" name="start_date"> <br>
 								<label> End Date &nbsp&nbsp: </label> <input type="date" name="end_date"> <br>
 								<label> Description: </label><br>
 								<textarea name="description" style="width:80%;height:150px;"></textarea><br>
-								<button name="leave_submit" id = "submitB"> Submit</button>
+								<button name="leave_submit" id = "button_id"> Submit</button>
 							</form>
 
 
@@ -115,11 +116,16 @@ $result = pg_query($db, $sql);
 
 									echo "
 									<li class='list-group-item' style='border-left: medium solid; border-left-width:10px;' >
-									
-									
 									<p>".$row['4']."</p>
 									<small class='text-muted'>".$row['2']." - ". $row['3'] ."</small>
-									<h6 hidden>".$row['5']."</h6>
+									<h6 hidden>".$row['5']."</h6>";
+									
+									echo "
+									<form method='post' action='appr.inc.php' >
+									<input type='hidden' name='redirect'  value='" . $row['0'] . "' >
+									<button  name='approved_Submit'  class='btn btn-success'>View Details</button>
+									</form>
+									<br><br>
 									</li>";
 								}
 								?>

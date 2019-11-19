@@ -156,7 +156,7 @@
                         <option value="Director">Director</option>
                         <option value="Disabled">Disable</option>
                     </select></div>
-                    <div class = "col-sm-4"><button name="ADFA_Btn" class="btn btn-primary">Update</button></div>
+                    <div class = "col-sm-4"><button name="DFA_Btn" class="btn btn-primary">Update</button></div>
                 </div>
                 <hr>
                 <div><button name="Defaults_Btn" class="btn btn-primary">Set Defaults</button>
