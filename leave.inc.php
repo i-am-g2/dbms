@@ -64,6 +64,10 @@ if (isset($_POST['leave_submit'])) {
 			//echo "ll".$res[0];
 			//exit();
 			if ($res) {
+				$values = array(
+					"log_" => "Leave application with app_id ".$_SESSION['app_id'] ."created by ".$_SESSION['userId'] 
+				);
+				$res = pg_insert($db, 'logs', $values);
 				/* Redirect to Dashboard with msg */
 				header("Location: dashboard.php?msg=Application_Submit_Successful");
 

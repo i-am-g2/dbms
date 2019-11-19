@@ -14,14 +14,23 @@
 		$sql = "update applications set curr_holder='" . $application_data['1'] . "' where id ='" . $application_data['0'] . "';";
 		$res = pg_query($db, $sql);
 		if ($res) {
+			$values = array(
+				"log_" => $_SESSION['userId']." reverted back app_id ".$_SESSION['app_id'] 
+			);
+			$res = pg_insert($db, 'logs', $values);
 			header("Location: action.php");
 		}
 	} else if (isset($_POST['resubmit'])) {
-		/* TODO Approve Check */
+		
 
 		$next_holder = getRouteFromUsername( $db,$application_data['1']); 
 		$sql = "update applications set curr_holder='" . $next_holder . "' where id ='" . $application_data['0'] ."';";
 		$res = pg_query($db, $sql);
+		$values = array(
+			"log_" => $_SESSION['userId']." resubmitted app_id ".$_SESSION['app_id'] 
+		);
+		$res = pg_insert($db, 'logs', $values);
+		
 		header("Location: action.php");
 
 		
@@ -36,6 +45,10 @@
 		$res = pg_query($db, $set_curr_status);
 		
 		/* Redirect  */
+		$values = array(
+			"log_" => $_SESSION['userId']." rejected app_id ".$_SESSION['app_id'] 
+		);
+		$res = pg_insert($db, 'logs', $values);
 		header("Location: action.php");
 
 	} else if (isset($_POST['approve_submit'])) {
@@ -61,6 +74,11 @@
 			$update_leave = "update remaining_leaves set daysleft = daysleft-'".$application_data['7']."' where username='". $application_data['1'] ."' and yearid = '1'; ";
 			$res = pg_query($db,$update_leave);
 			
+			$values = array(
+				"log_" => "approved app_id ".$_SESSION['app_id'] 
+			);
+			$res = pg_insert($db, 'logs', $values);
+
 		}
 		header ("Location: action.php") ;
 		

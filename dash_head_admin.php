@@ -118,6 +118,10 @@ if (!isset($_SESSION['admin_login'])) {
 					<span> View Logs </span></a>
 			</li>
 			<li class="nav-item">
+				<a class="nav-link" href="log_view.php">
+					<span> View User Activity </span></a>
+			</li>
+			<li class="nav-item">
 				<a class="nav-link" href="new_year.php">
 					
 					<span> New Year </span></a>

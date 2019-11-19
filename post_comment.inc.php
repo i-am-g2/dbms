@@ -23,6 +23,10 @@ if (isset($_POST['comment_submit'])) {
 			
 		$res = pg_insert($db, 'comments', $values);
 		if ($res) {
+			$values = array(
+				"log_" => $_SESSION['userId']." commented on app_id ".$_SESSION['app_id'] 
+			);
+			$res = pg_insert($db, 'logs', $values);
 			header("Location: action_app_details.php");
 			/* Redirect to Dashboard with msg */
 			// echo "Success";

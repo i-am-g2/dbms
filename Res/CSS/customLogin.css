@@ -151,3 +151,14 @@ body {
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
+
+.bottumbar>.paraRight {
+  color: #f2f2f2;
+  /* 
+  
+  background-color: ##f2f2f2; */
+  position: relative;
+  font-family: Helvetica, sans-serif;
+	font-weight: 400;
+	padding-left: 2em;
+}

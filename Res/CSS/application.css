@@ -121,6 +121,15 @@ body {
 	padding-left: 2em;
 }
 
+.bottumbar>.paraRight {
+  color: #f2f2f2;
+  background-color: #EF3B3A;
+	font-family: Helvetica, sans-serif;
+	font-weight: 400;
+	padding-left: 2em;
+}
+
+
 .errorMsg{
 	margin-top: 25px;
 	background-color: red;

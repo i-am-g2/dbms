@@ -27,8 +27,19 @@
 			$_SESSION['login'] = true;
 			$_SESSION['userId'] = $_POST['userId'];
 			header("Location: dashboard.php"); 
+
+			/* LOG */
+			$values = array(
+				"log_" => $_SESSION['userId']." logged in" 
+			);
+			$res = pg_insert($db, 'logs', $values);
+
 		} else {
 			header("Location: index.php?error=wrongpassword&message=Password_Error&username=".$_POST['userId']);
+			$values = array(
+				"log_" => $_SESSION['userId']." attempted login failed" 
+			);
+			$res = pg_insert($db, 'logs', $values);
 		}
 
 		

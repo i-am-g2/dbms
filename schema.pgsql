@@ -78,3 +78,9 @@ CREATE TABLE admin_logs{
 
 -- 
 Insert into comments VALUES('3', 'jeetu' , NOW() , 'HI there');
+
+
+CREATE TABLE logs (
+	created_at timestamp  not null Default NOW(),
+	log_ VARCHAR(200) NOT NULL
+);
