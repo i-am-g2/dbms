@@ -79,7 +79,7 @@ if (array_key_exists('reset', $_POST)) {
   </div>
 </div>
 <script>
-  $(".sidebar li:eq(8)").addClass(" active ");
+  $(".sidebar li:eq(9)").addClass(" active ");
 </script>
 
 <?php

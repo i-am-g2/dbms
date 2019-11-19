@@ -26,7 +26,7 @@
     </div>
     
     <script>
-		$(".sidebar li:eq(0)").addClass(" active ");
+		$(".sidebar li:eq(8)").addClass(" active ");
 	</script>
 	
 <?php

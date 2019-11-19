@@ -126,10 +126,10 @@ if (!isset($_SESSION['admin_login'])) {
 					
 					<span> New Year </span></a>
 			</li>
-		<!--	<li class="nav-item">
+			<li class="nav-item">
 				<a class="nav-link" href="backup.php">
 					
 					<span> Backup </span></a>
 			</li>
--->
+
 		</ul>
