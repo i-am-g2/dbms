@@ -38,10 +38,11 @@
 	session_start();
 	require_once __DIR__ . "/vendor/autoload.php";
 	$Permission=FALSE;
-	echo $_SESSION['userId'];
+	//echo $_SESSION['userId'];
 	$UserIdPara = $_GET['UserId'];
 	if(isset($_SESSION['userId'])){
-		if($_SESSION['UserId']!=$UserIdPara){
+		 
+		if($_SESSION['userId']!=$UserIdPara){
 		//	echo"<script type = 'text/javascript'>alert('Not Enough Permissions');</script>";
 			header("Location: dashboard.php?alert=You_cannot_edit_others'_profile");
 		}
@@ -944,8 +945,8 @@
 			Title:<input type = 'text' name='New_Project_Title'><br>
 			Link:<input type = 'text' name='New_Project_Link'><br>
 			Description:<input type = 'textarea' name='New_Project_Description'><br>
-			Time Begin: (Month-year):<input type = 'text' name='New_Project_Time_Begin'><br>
-			Time End: (Month-year):<input type = 'text' name='New_Project_Time_End'>
+			Time Begin: (Month-year):<input type = 'date' name='New_Project_Time_Begin'><br>
+			Time End: (Month-year):<input type = 'date' name='New_Project_Time_End'>
 			<input type='submit' name='button18' class='button' value='Add'/><br><hr>
 			";
 
@@ -972,7 +973,7 @@
 			Paper Conference Title:<input type = 'text' name='New_Conference_Paper_Title'><br>
 			Link:<input type = 'text' name='New_Paper_Link'><br>
 			Description:<input type = 'textarea' name='New_Paper_Description'><br>
-			Time (Month-year):<input type = 'text' name='New_Paper_Time'><br>
+			Time (Month-year):<input type = 'date' name='New_Paper_Time'><br>
 			Citations:<input type = 'text' name='New_Paper_Citations'>
 			
 			<input type='submit' name='button20' class='button' value='Add'/><br><hr>
@@ -1001,7 +1002,7 @@
 			Paper Conference Title:<input type = 'text' name='New_Conference_Article_Title'><br>
 			Link:<input type = 'text' name='New_Article_Link'><br>
 			Description:<input type = 'textarea' name='New_Article_Description'><br>
-			Time (Month-year):<input type = 'text' name='New_Article_Time'>
+			Time (Month-year):<input type = 'date' name='New_Article_Time'>
 			
 			<input type='submit' name='button22' class='button' value='Add'/><br><hr>
 			";
@@ -1028,7 +1029,7 @@
 			Title:<input type = 'text' name='New_Others_Title'><br>
 			Link:<input type = 'text' name='New_Others_Link'><br>
 			Description:<input type = 'textarea' name='New_Others_Description'><br>
-			Time (Month-year):<input type = 'text' name='New_Others_Time'>			
+			Time (Month-year):<input type = 'date' name='New_Others_Time'>			
 			<input type='submit' name='button24' class='button' value='Add'/><br><hr>
 			";
 
@@ -1054,7 +1055,7 @@
 			}
 			echo" Add New Prizes:<br> 
 			Title:<input type = 'text' name='New_Prize_Title'><br>
-			Time:<input type = 'text' name='New_Prize_Time'>
+			Time:<input type = 'date' name='New_Prize_Time'>
 			<input type='submit' name='button26' class='button' value='Add'/><br><hr>
 			";
 			
