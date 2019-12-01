@@ -2,8 +2,11 @@
 
 The portal can be used in 2 kinds of modes: Admin and User.
 
-### Collaborators
-[Yogesh Chhabra](https://github.com/yogeshchhabra99) 
+| Collaborators |
+| :--- |
+|Jeetu Kumar|
+| [Yogesh Chhabra](https://github.com/yogeshchhabra99) |
+
 
 ## Admin Operations:
 1. Create New Users(Faculties).<br>
