@@ -9,23 +9,23 @@ The portal can be used in 2 kinds of modes: Admin and User.
 
 
 ## Admin Operations:
-1. Create New Users(Faculties).<br>
-2. Delete Users<br>
-3. View Logs<br>
-4. Modify Leave Routes(explained further later)<br>
-5. Create/Delete secondary Admins with limited power on portal.<br>
-6. Change HODs or other positions like Faculty Advisors or Assistant Faculty Advisors.<br>
-7. View User Activities.<br>
-8. Grant new leaves to users on new year.<br>
+1. Create New Users(Faculties).
+2. Delete Users
+3. View Logs
+4. Modify Leave Routes(explained further later)
+5. Create/Delete secondary Admins with limited power on portal.
+6. Change HODs or other positions like Faculty Advisors or Assistant Faculty Advisors.
+7. View User Activities.
+8. Grant new leaves to users on new year.
 
 ## User Operations:
-1. Manage his/her profile.<br>
-2. Take Leave.<br>
-3. comment/approve/reject on any leave applications that are forwarded to him/her.(for HOD/FAs).<br>
+1. Manage his/her profile.
+2. Take Leave.
+3. comment/approve/reject on any leave applications that are forwarded to him/her.(for HOD/FAs).
 
 ## Things Managed by portal:
-1. Manage Leaves for different Faculties.<br>
-2. Send the Leave Application to the proper person in the heirarchy.<br>
+1. Manage Leaves for different Faculties.
+2. Send the Leave Application to the proper person in the heirarchy.
 
 ## Technologies used:
 * PHP7.2
