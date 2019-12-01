@@ -4,7 +4,7 @@ The portal can be used in 2 kinds of modes: Admin and User.
 
 | Authors |
 | :--- |
-|Jeetu Kumar|
+| [Jeetu Kumar](https://github.com/i-am-g2/) |
 | [Yogesh Chhabra](https://github.com/yogeshchhabra99) |
 
 
